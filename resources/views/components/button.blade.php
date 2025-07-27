@@ -3,6 +3,11 @@
     'fullWidth' => false,
 ])
 
-<button class="btn @if($variant) btn-{{ $variant }} @endif @if($fullWidth) btn-block @endif" {{ $attributes }}>
+<button @class([
+    "btn",
+    "btn-primary" => $variant === 'primary',
+    "btn-error" => $variant === 'error',
+    "btn-block" => $fullWidth,
+]) {{ $attributes }}>
     {{ $slot }}
 </button>
