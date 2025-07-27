@@ -5,7 +5,7 @@
         <p>{{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}</p>
 
         <div class="card-actions">
-            <x-form-submit x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')" type="error">
+            <x-form-submit x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')" variant="error">
                 {{ __('Delete Account') }}
             </x-form-submit>
         </div>
@@ -23,13 +23,13 @@
                         @csrf
                         @method('delete')
 
-                        <x-input type="password" label="{{ __('Password') }}" name="password" />
+                        <x-input type="password" label="{{ __('Password') }}" name="password-deletion" />
 
                         <div class="card-actions">
-                            <x-form-submit type="error">
+                            <x-form-submit variant="error">
                                 {{ __('Delete Account') }}
                             </x-form-submit>
-                            <x-form-submit type="default" x-on:click="$dispatch('close')">
+                            <x-form-submit variant="default" x-on:click="$dispatch('close')">
                                 {{ __('Cancel') }}
                             </x-form-submit>
                         </div>

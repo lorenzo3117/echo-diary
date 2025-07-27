@@ -17,7 +17,7 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-gray-800">
+                    <p>
                         {{ __('Your email address is unverified.') }}
 
                         <x-form-submit form="send-verification">
@@ -25,8 +25,8 @@
                         </x-form-submit>
                     </p>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
+                    @if (session('success') === 'verification-link-sent')
+                        <p>
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
