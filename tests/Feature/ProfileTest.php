@@ -68,7 +68,7 @@ class ProfileTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->delete('/profile', [
-                'password' => 'password',
+                'password-deletion' => 'password',
             ]);
 
         $response
@@ -87,11 +87,11 @@ class ProfileTest extends TestCase
             ->actingAs($user)
             ->from('/profile')
             ->delete('/profile', [
-                'password' => 'wrong-password',
+                'password-deletion' => 'wrong-password',
             ]);
 
         $response
-            ->assertSessionHasErrorsIn('userDeletion', 'password')
+            ->assertSessionHasErrors('password-deletion')
             ->assertRedirect('/profile');
 
         $this->assertNotNull($user->fresh());
