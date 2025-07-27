@@ -1,0 +1,28 @@
+@theme {
+    --font-body: 'instrument Sans', sans-serif;
+}
+
+body {
+    @apply font-body;
+}
+
+h1 {
+    @apply text-4xl font-bold mb-8;
+}
+
+
+h2 {
+    @apply text-3xl font-bold;
+}
+
+h3 {
+    @apply text-2xl font-bold;
+}
+
+h4 {
+    @apply text-xl font-bold;
+}
+
+p {
+    word-wrap: anywhere;
+}

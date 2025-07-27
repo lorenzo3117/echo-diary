@@ -1,0 +1,56 @@
+@utility container {
+    margin-inline: auto;
+    max-width: 1300px;
+    @apply px-[1rem] md:px-[2rem] lg:px-[3rem] xl:px-[4rem] 2xl:px-[6rem];
+}
+
+@utility vstack {
+    display: flex;
+    flex-direction: column;
+    @apply gap-4;
+}
+
+@utility hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @apply gap-4;
+}
+
+@utility center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@utility card {
+    @apply bg-base-100 shadow;
+}
+
+@utility card-body {
+    @apply gap-4;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.hover-scale {
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+}
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.hover-bg {
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+.hover-bg:hover {
+    @apply bg-base-300;
+}
+
+.active-bg {
+    @apply bg-base-300;
+}
