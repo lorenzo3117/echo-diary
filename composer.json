@@ -1,8 +1,16 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "name": "lorenzo-catalano/echo-diary",
+    "description": "EchoDiary is a Laravel-based web application designed for journaling and diary management.",
+    "authors": [
+        {
+            "name": "Lorenzo Catalano",
+            "email": "lorenzo.catalano@outlook.com",
+            "homepage": "https://react-portfolio-indol-six.vercel.app/",
+            "role": "Developer"
+        }
+    ],
     "keywords": [
         "laravel",
         "framework"

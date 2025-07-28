@@ -1,4 +1,7 @@
 {
+    "name": "echo-diary",
+    "description": "EchoDiary is a Laravel-based web application designed for journaling and diary management.",
+    "author": "Lorenzo Catalano",
     "$schema": "https://json.schemastore.org/package.json",
     "private": true,
     "type": "module",
