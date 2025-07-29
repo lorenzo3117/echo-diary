@@ -13,9 +13,6 @@ class RoleSeeder extends Seeder
         // Admin
         Bouncer::allow('admin')->everything();
 
-        // Banned
-        Bouncer::forbid('banned')->everything();
-
         // Routes
         Bouncer::allow('moderator')->to('admin-dashboard');
 
