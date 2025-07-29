@@ -2,12 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\PostStatus;
+use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function home(): View
+    public function home(Request $request): View
     {
-        return view('home');
+        $user = $request->user();
+
+        $posts = Post::query()
+            ->when($user != null, function ($query) use ($user) {
+                $query->where('user_id', '!=', $user->id);
+            })
+            ->where('status', '=', PostStatus::PUBLISHED->value)
+            ->orderByDesc('created_at')
+            ->with('user')
+            ->paginate(20);
+
+        return view('home', [
+            'posts' => $posts,
+        ]);
     }
 }

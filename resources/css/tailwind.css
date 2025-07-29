@@ -4,6 +4,10 @@
     @apply px-[1rem] md:px-[2rem] lg:px-[3rem] xl:px-[4rem] 2xl:px-[6rem];
 }
 
+@utility container-small {
+    @apply w-2xl mx-auto;
+}
+
 @utility vstack {
     display: flex;
     flex-direction: column;

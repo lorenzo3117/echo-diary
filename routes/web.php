@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
     });
 
+    // Post
+    Route::resource('post', PostController::class)
+        ->except('show');
+
     // Admin
     Route::prefix('admin')->name("admin.")->group(function () {
         Route::get('', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
@@ -29,3 +34,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/profile/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');

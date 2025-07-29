@@ -9,10 +9,12 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @endguest
                 @auth
+                    <li><a href="{{ route('post.create') }}">Create post</a></li>
                     @can('admin-dashboard')
                         <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                     @endcan
                     <li><a href="{{ route('profile.show', auth()->user()) }}">Profile</a></li>
+                    <li><a href="{{ route('profile.edit') }}">Settings</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

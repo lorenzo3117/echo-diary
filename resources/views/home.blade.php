@@ -1,6 +1,9 @@
 @extends('base')
 
 @section('content')
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page of our application.</p>
+    <div class="container-small">
+        <h2 class="mb-8">Your feed</h2>
+
+        @include('post.partials.list', ['posts' => $posts])
+    </div>
 @endsection

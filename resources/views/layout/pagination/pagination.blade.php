@@ -26,7 +26,7 @@
         {{-- Desktop, Detailed --}}
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
-                <p class="text-base-content/70">
+                <p class="text-muted">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>

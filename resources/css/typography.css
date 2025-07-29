@@ -10,7 +10,6 @@ h1 {
     @apply text-4xl font-bold mb-8;
 }
 
-
 h2 {
     @apply text-3xl font-bold;
 }
@@ -25,4 +24,8 @@ h4 {
 
 p {
     word-wrap: anywhere;
+}
+
+@utility text-muted {
+    @apply text-base-content/50
 }
