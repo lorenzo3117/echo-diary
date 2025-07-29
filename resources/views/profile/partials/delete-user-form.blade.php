@@ -12,9 +12,8 @@
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <h2>{{ __('Are you sure you want to delete your account?') }}</h2>
 
-        <p class="text-danger">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-        </p>
+        <p class="text-danger">{{ __('Once your account is deleted, all of its resources and data will be permanently deleted.') }}</p>
+        <p class="text-danger">{{ __('Please enter your password to confirm you would like to permanently delete your account.') }}</p>
 
         <form method="post" action="{{ route('profile.destroy') }}" class="vstack">
             @csrf
