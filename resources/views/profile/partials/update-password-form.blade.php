@@ -7,12 +7,12 @@
         @csrf
         @method('put')
 
-        <x-input type="password" label="{{ __('Current password') }}" name="current_password"/>
-        <x-input type="password" label="{{ __('New password') }}" name="password"/>
-        <x-input type="password" label="{{ __('Confirm password') }}" name="password_confirmation"/>
+        <x-form.input type="password" label="{{ __('Current password') }}" name="current_password"/>
+        <x-form.input type="password" label="{{ __('New password') }}" name="password"/>
+        <x-form.input type="password" label="{{ __('Confirm password') }}" name="password_confirmation"/>
 
         <div>
-            <x-form-submit>{{ __('Save') }}</x-form-submit>
+            <x-form.submit>{{ __('Save') }}</x-form.submit>
         </div>
     </form>
 </div>

@@ -7,14 +7,14 @@
         <form method="GET" action="{{ route('admin.dashboard') }}" class="hstack">
             @csrf
 
-            <x-input placeholder="{{ __('Username') }}" name="username" value="{{ $input['username'] ?? null }}"
+            <x-form.input placeholder="{{ __('Username') }}" name="username" value="{{ $input['username'] ?? null }}"
                      :required="false"/>
-            <x-input placeholder="{{ __('Email') }}" name="email" value="{{ $input['email'] ?? null }}"
+            <x-form.input placeholder="{{ __('Email') }}" name="email" value="{{ $input['email'] ?? null }}"
                      :required="false"/>
-            <x-select placeholder="{{ __('Select a role') }}" name="role" value="{{ $input['role'] ?? null }}"
+            <x-form.select placeholder="{{ __('Select a role') }}" name="role" value="{{ $input['role'] ?? null }}"
                       :options="$roles" :required="false"/>
 
-            <x-form-submit>{{ __('Search') }}</x-form-submit>
+            <x-form.submit>{{ __('Search') }}</x-form.submit>
             <div>
                 <x-link href="{{ route('admin.dashboard') }}" asButton>{{ __('Clear') }}</x-link>
             </div>
@@ -68,13 +68,13 @@
                                     @csrf
 
                                     @foreach($roles as $id => $name)
-                                        <x-radio :label="strtoupper($name)" name="roles[]" value="{{ $id }}"
+                                        <x-form.radio :label="strtoupper($name)" name="roles[]" value="{{ $id }}"
                                                  checked="{{ $user->roles->contains($id) }}"/>
                                     @endforeach
 
-                                    <x-form-submit>
+                                    <x-form.submit>
                                         {{ __('Update user') }}
-                                    </x-form-submit>
+                                    </x-form.submit>
                                 </form>
                             </x-modal>
                         @endcan

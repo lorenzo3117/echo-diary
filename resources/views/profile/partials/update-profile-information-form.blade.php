@@ -7,11 +7,11 @@
         @csrf
         @method('patch')
 
-        <x-input label="{{ __('Username') }}" name="username" value="{{ $user->username }}"/>
-        <x-input label="{{ __('Email') }}" name="email" value="{{ $user->email }}"/>
+        <x-form.input label="{{ __('Username') }}" name="username" value="{{ $user->username }}"/>
+        <x-form.input label="{{ __('Email') }}" name="email" value="{{ $user->email }}"/>
 
         <div>
-            <x-form-submit>{{ __('Save') }}</x-form-submit>
+            <x-form.submit>{{ __('Save') }}</x-form.submit>
         </div>
     </form>
 </div>

@@ -9,13 +9,13 @@
                 <form method="POST" action="{{ route('login') }}" class="vstack">
                     @csrf
 
-                    <x-input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
-                    <x-input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
-                    <x-checkbox label="{{ __('Remember me') }}" name="remember"/>
+                    <x-form.input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
+                    <x-form.input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
+                    <x-form.checkbox label="{{ __('Remember me') }}" name="remember"/>
 
-                    <x-form-submit fullWidth>
+                    <x-form.submit fullWidth>
                         {{ __('Log in') }}
-                    </x-form-submit>
+                    </x-form.submit>
                     <x-link href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </x-link>

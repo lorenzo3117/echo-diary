@@ -11,11 +11,11 @@
                 <form method="POST" action="{{ route('password.email') }}" class="vstack">
                     @csrf
 
-                    <x-input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
+                    <x-form.input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
 
-                    <x-form-submit fullWidth>
+                    <x-form.submit fullWidth>
                         {{ __('Email password reset link') }}
-                    </x-form-submit>
+                    </x-form.submit>
                 </form>
             </div>
         </div>

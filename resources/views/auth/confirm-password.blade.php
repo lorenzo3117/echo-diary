@@ -11,11 +11,11 @@
                 <form method="POST" action="{{ route('password.confirm') }}" class="vstack">
                     @csrf
 
-                    <x-input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
+                    <x-form.input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
 
-                    <x-form-submit>
+                    <x-form.submit>
                         {{ __('Confirm') }}
-                    </x-form-submit>
+                    </x-form.submit>
                 </form>
             </div>
         </div>

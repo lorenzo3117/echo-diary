@@ -5,7 +5,7 @@
     'checked' => false,
 ])
 
-<label for="{{ $name }}" class="hstack gap-0">
+<label for="{{ $name }}" class="hstack gap-2">
     <input type="radio" name="{{ $name }}" value="{{ $value }}" @checked(old($name, $checked)) class="radio" />
-    <span class="ms-2">{{ $label }}</span>
+    <span>{{ $label }}</span>
 </label>

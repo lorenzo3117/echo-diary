@@ -20,9 +20,9 @@
                 <form method="POST" action="{{ route('verification.send') }}" class="vstack">
                     @csrf
 
-                    <x-form-submit type="default">
+                    <x-form.submit type="default">
                         {{ __('Resend verification email') }}
-                    </x-form-submit>
+                    </x-form.submit>
                 </form>
             </div>
         </div>
