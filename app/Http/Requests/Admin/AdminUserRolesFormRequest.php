@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
+use App\Models\User;
 use Bouncer;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminDashboardFormRequest extends FormRequest
+class AdminUserRolesFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Bouncer::can('admin-dashboard');
+        return Bouncer::can('roles', User::class);
     }
 
     /**
@@ -23,9 +24,7 @@ class AdminDashboardFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['string', 'nullable'],
-            'email' => ['string', 'nullable'],
-            'role' => ['string', 'nullable'],
+            'roles' => ['array', 'exists:roles,id', 'required'],
         ];
     }
 }

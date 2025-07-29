@@ -12,7 +12,7 @@
                     @can('admin-dashboard')
                         <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                     @endcan
-                    <li><a href="{{ route('profile.edit') }}">Profile</a></li>
+                    <li><a href="{{ route('profile.show', auth()->user()) }}">Profile</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

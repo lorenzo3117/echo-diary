@@ -10,6 +10,8 @@
         <x-input label="{{ __('Username') }}" name="username" value="{{ $user->username }}"/>
         <x-input label="{{ __('Email') }}" name="email" value="{{ $user->email }}"/>
 
-        <x-form-submit>{{ __('Save') }}</x-form-submit>
+        <div>
+            <x-form-submit>{{ __('Save') }}</x-form-submit>
+        </div>
     </form>
 </div>

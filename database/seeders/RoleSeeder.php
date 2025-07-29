@@ -10,16 +10,18 @@ class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        // Superadmin
-        Bouncer::allow('superadmin')->everything();
+        // Admin
+        Bouncer::allow('admin')->everything();
+
+        // Banned
+        Bouncer::forbid('banned')->everything();
 
         // Routes
         Bouncer::allow('moderator')->to('admin-dashboard');
-        Bouncer::allow('admin')->to('admin-dashboard');
 
         // User
-        Bouncer::allow('user')->toOwn(User::class)->to(['edit', 'delete']);
+        Bouncer::allow('user')->toOwn(User::class)->to(['update', 'delete']);
         Bouncer::allow('moderator')->to(['ban'], User::class);
-        Bouncer::allow('admin')->to(['ban', 'edit-roles'], User::class);
+        Bouncer::allow('admin')->to(['roles'], User::class);
     }
 }

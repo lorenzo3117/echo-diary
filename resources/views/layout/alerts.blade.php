@@ -4,7 +4,7 @@
     </div>
 @endif
 @if ($errors->any())
-    <div class="vstack mb-8">
+    <div class="vstack items-stretch mb-8">
         @foreach($errors->all() as $error)
             <x-alert variant="error" message="{{ $error }}"/>
         @endforeach

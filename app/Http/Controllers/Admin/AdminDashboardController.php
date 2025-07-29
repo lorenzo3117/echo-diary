@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminDashboardFormRequest;
+use App\Http\Requests\Admin\AdminDashboardFormRequest;
 use App\Models\User;
 use Illuminate\View\View;
 use Silber\Bouncer\Database\Role;
@@ -24,9 +24,11 @@ class AdminDashboardController extends Controller
                 $query->where('email', 'ilike', '%' . $request->validated('email') . '%');
             })->when($request->validated('role'), function ($query) use ($request) {
                 $query->whereHas('roles', function ($query) use ($request) {
-                    $query->where('roles.id', $request->input('role'));
+                    $query->where('roles.id', $request->validated('role'));
                 });
-            })->paginate(10);
+            })
+            ->orderBy('id')
+            ->paginate(10);
 
         return view('admin.dashboard', [
             'roles' => $roles,

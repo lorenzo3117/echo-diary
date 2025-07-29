@@ -29,7 +29,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user = $request->user();
-        Bouncer::authorize('edit', $user);
+        Bouncer::authorize('update', $user);
 
         return view('profile.edit', [
             'user' => $user,
@@ -42,7 +42,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        Bouncer::authorize('edit', $user);
+        Bouncer::authorize('update', $user);
 
         $user->fill($request->validated());
 

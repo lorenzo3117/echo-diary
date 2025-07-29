@@ -11,8 +11,8 @@
         <x-input type="password" label="{{ __('New password') }}" name="password"/>
         <x-input type="password" label="{{ __('Confirm password') }}" name="password_confirmation"/>
 
-        <x-form-submit>
-            {{ __('Save') }}
-        </x-form-submit>
+        <div>
+            <x-form-submit>{{ __('Save') }}</x-form-submit>
+        </div>
     </form>
 </div>
