@@ -6,22 +6,19 @@
             <div class="card-body w-md">
                 <h2>{{ __('Login to your account') }}</h2>
 
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class="vstack">
                     @csrf
 
                     <x-input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
                     <x-input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
                     <x-checkbox label="{{ __('Remember me') }}" name="remember"/>
 
-                    <div class="vstack">
-                        <x-form-submit fullWidth>
-                            {{ __('Log in') }}
-                        </x-form-submit>
-
-                        <x-link href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </x-link>
-                    </div>
+                    <x-form-submit fullWidth>
+                        {{ __('Log in') }}
+                    </x-form-submit>
+                    <x-link href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </x-link>
                 </form>
 
                 <div class="divider my-0"></div>

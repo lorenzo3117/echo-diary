@@ -9,6 +9,9 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @endguest
                 @auth
+                    @can('admin-dashboard')
+                        <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+                    @endcan
                     <li><a href="{{ route('profile.edit') }}">Profile</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

@@ -9,16 +9,32 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Lorenzo Catalano',
-            'email' => 'lorenzocatalano37@gmail.com',
+        $superadmin = User::factory()->create([
+            'username' => 'superadmin',
+            'email' => 'superadmin@gmail.com',
         ]);
+        $superadmin->assign('superadmin');
 
-        User::factory()->create([
-            'name' => 'Admin',
+        $admin = User::factory()->create([
+            'username' => 'admin',
             'email' => 'admin@gmail.com',
         ]);
+        $admin->assign('admin');
 
-        User::factory(10)->create();
+        $moderator = User::factory()->create([
+            'username' => 'moderator',
+            'email' => 'moderator@gmail.com',
+        ]);
+        $moderator->assign('moderator');
+
+        $user = User::factory()->create([
+            'username' => 'lorenzo3117',
+            'email' => 'lorenzocatalano37@gmail.com',
+        ]);
+        $user->assign('user');
+
+        User::factory(100)->create()->each(function ($user) {
+            $user->assign('user');
+        });
     }
 }

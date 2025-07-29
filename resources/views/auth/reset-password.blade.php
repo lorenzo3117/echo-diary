@@ -4,7 +4,7 @@
     <div class="center">
         <div class="card">
             <div class="card-body w-md">
-                <form method="POST" action="{{ route('password.store') }}">
+                <form method="POST" action="{{ route('password.store') }}" class="vstack">
                     @csrf
 
                     <x-input-token :request="$request"/>
@@ -13,7 +13,7 @@
                     <x-input type="password" label="{{ __('Confirm Password') }}" name="password_confirmation"
                              fullWidth/>
 
-                    <x-form-submit fullWidth>
+                    <x-form-submit>
                         {{ __('Reset password') }}
                     </x-form-submit>
                 </form>

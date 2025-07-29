@@ -1,13 +1,13 @@
 @props([
-    'type' => 'info',
+    'variant' => 'info',
     'message' => '',
 ])
 
 <div role="alert" @class([
     'alert',
-    'alert-info' => $type === 'info',
-    'alert-success' => $type === 'success',
-    'alert-error' => $type === 'error',
+    'alert-info' => $variant === 'info',
+    'alert-success' => $variant === 'success',
+    'alert-error' => $variant === 'error',
 ])>
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 shrink-0 stroke-current">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

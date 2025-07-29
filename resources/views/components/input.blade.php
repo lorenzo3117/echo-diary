@@ -13,7 +13,7 @@
     $inputValue = old($name, $value);
 @endphp
 
-<div class="mb-4">
+<div @class(['w-full' => $fullWidth])>
     @if ($label)
         <label for="{{ $name }}" class="block mb-2">
             {{ $label }}

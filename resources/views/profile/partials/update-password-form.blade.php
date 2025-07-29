@@ -3,7 +3,7 @@
 
     <p>{{ __('Ensure your account is using a long, random password to stay secure.') }}</p>
 
-    <form method="post" action="{{ route('password.update') }}">
+    <form method="post" action="{{ route('password.update') }}" class="vstack">
         @csrf
         @method('put')
 

@@ -8,12 +8,12 @@
                     {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
                 </h2>
 
-                <form method="POST" action="{{ route('password.confirm') }}">
+                <form method="POST" action="{{ route('password.confirm') }}" class="vstack">
                     @csrf
 
                     <x-input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
 
-                    <x-form-submit fullWidth>
+                    <x-form-submit>
                         {{ __('Confirm') }}
                     </x-form-submit>
                 </form>

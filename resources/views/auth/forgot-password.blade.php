@@ -8,7 +8,7 @@
 
                 <p>{{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to create a new one.') }}</p>
 
-                <form method="POST" action="{{ route('password.email') }}">
+                <form method="POST" action="{{ route('password.email') }}" class="vstack">
                     @csrf
 
                     <x-input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>

@@ -17,10 +17,10 @@
                     </p>
                 @endif
 
-                <form method="POST" action="{{ route('verification.send') }}">
+                <form method="POST" action="{{ route('verification.send') }}" class="vstack">
                     @csrf
 
-                    <x-form-submit type="default" fullWidth>
+                    <x-form-submit type="default">
                         {{ __('Resend verification email') }}
                     </x-form-submit>
                 </form>

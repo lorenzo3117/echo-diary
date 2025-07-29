@@ -16,7 +16,7 @@
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
         </p>
 
-        <form method="post" action="{{ route('profile.destroy') }}">
+        <form method="post" action="{{ route('profile.destroy') }}" class="vstack">
             @csrf
             @method('delete')
 
