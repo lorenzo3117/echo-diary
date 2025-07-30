@@ -66,3 +66,7 @@ html {
 .active-bg {
     @apply bg-base-300;
 }
+
+.cursor {
+    cursor: pointer;
+}

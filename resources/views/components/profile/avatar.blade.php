@@ -1,5 +1,7 @@
 @props([
     'user' => null,
+    'showUsername' => true,
+    'navigateToProfile' => true,
 ])
 
 @php
@@ -17,15 +19,15 @@
 
 @if($user)
     <div>
-        <a href="{{ route('profile.show', $user) }}" class="block">
+        @if($navigateToProfile) <a href="{{ route('profile.show', $user) }}" class="block"> @endif
             <div class="hstack gap-2">
                 <div class="avatar avatar-placeholder">
                     <div class="{{ $bg_color }} text-neutral-content w-8 rounded-full">
                         <span>{{ $avatar_placeholder }}</span>
                     </div>
                 </div>
-                <p>{{ $username }}</p>
+                @if($showUsername) <p>{{ $username }}</p> @endif
             </div>
-        </a>
+        @if($navigateToProfile) </a> @endif
     </div>
 @endif

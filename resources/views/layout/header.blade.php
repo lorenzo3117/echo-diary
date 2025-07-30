@@ -3,26 +3,17 @@
         <div class="flex-1">
             <a href="{{ route('home') }}" class="font-bold">EchoDiary</a>
         </div>
-        <div class="flex items-center gap-2">
-            <ul class="menu menu-horizontal">
-                @guest
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                @endguest
-                @auth
-                    <li><a href="{{ route('post.create') }}">Create post</a></li>
-                    @can('admin-dashboard')
-                        <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                    @endcan
-                    <li><a href="{{ route('profile.show', auth()->user()) }}">Profile</a></li>
-                    <li><a href="{{ route('profile.edit') }}">Settings</a></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="link no-underline" type="submit">Logout</button>
-                        </form>
-                    </li>
-                @endauth
-            </ul>
-        </div>
+        <ul class="menu menu-horizontal items-center gap-2">
+            @guest
+                <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+            @endguest
+            @auth
+                <li><a href="{{ route('post.create') }}">{{ __('Create post') }}</a></li>
+                @can('admin-dashboard')
+                    <li><a href="{{ route('admin.dashboard') }}">{{ __('Admin') }}</a></li>
+                @endcan
+                @include('profile.partials.header-button')
+            @endauth
+        </ul>
     </div>
 </div>
