@@ -16,7 +16,7 @@
                 <p class="line-clamp-5">{{ $post->description }}</p>
             </a>
             <div @class([
-                    'card-actions items-end',
+                    'card-actions items-end mt-4',
                     'justify-between' => $showUserInfo,
                     'justify-end' => !$showUserInfo,
                 ])>
