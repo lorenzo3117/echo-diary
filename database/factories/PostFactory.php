@@ -24,4 +24,17 @@ class PostFactory extends Factory
             'status' => fake()->randomElement(PostStatus::toArray()),
         ];
     }
+
+    /**
+     * Indicate an invalid model.
+     */
+    public function invalid(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'title' => null,
+            'description' => null,
+            'content' => null,
+            'status' => null,
+        ]);
+    }
 }

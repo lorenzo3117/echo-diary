@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        Bouncer::can('create', Post::class);
+        Bouncer::authorize('create', Post::class);
 
         return view('post.create');
     }
@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function store(PostFormRequest $request): RedirectResponse
     {
-        Bouncer::can('create', Post::class);
+        Bouncer::authorize('create', Post::class);
 
         $data = $request->validated();
         $data['user_id'] = Auth::id();
@@ -55,7 +55,7 @@ class PostController extends Controller
      */
     public function edit(Post $post): View
     {
-        Bouncer::can('update', $post);
+        Bouncer::authorize('update', $post);
 
         return view('post.edit', [
             'post' => $post,
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function update(PostFormRequest $request, Post $post): RedirectResponse
     {
-        Bouncer::can('update', $post);
+        Bouncer::authorize('update', $post);
 
         $post->update($request->validated());
 
@@ -79,7 +79,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post): RedirectResponse
     {
-        Bouncer::can('delete', $post);
+        Bouncer::authorize('delete', $post);
 
         $post->delete();
 

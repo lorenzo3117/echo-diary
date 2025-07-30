@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Post;
 
+use App\Enum\PostStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PostFormRequest extends FormRequest
 {
@@ -25,6 +27,7 @@ class PostFormRequest extends FormRequest
             'title' => ['string', 'max:255', 'unique:posts,title','required'],
             'description' => ['string', 'max:255', 'nullable'],
             'content' => ['string', 'max:65535', 'required'],
+            'status' => [Rule::enum(PostStatus::class), 'nullable'],
         ];
     }
 }
