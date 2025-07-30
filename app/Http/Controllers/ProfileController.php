@@ -18,8 +18,11 @@ class ProfileController extends Controller
      */
     public function show(User $user): View
     {
+        $posts = $user->posts()->orderByDesc('created_at')->paginate(10);
+
         return view('profile.show', [
             'user' => $user,
+            'posts' => $posts,
         ]);
     }
 

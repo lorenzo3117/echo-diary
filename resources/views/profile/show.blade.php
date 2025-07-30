@@ -16,7 +16,7 @@
         </div>
 
         @include('post.partials.list', [
-            'posts' => $user->posts,
+            'posts' => $posts,
             'showUserInfo' => false,
         ])
     </div>

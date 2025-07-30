@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
  * @property int $id
@@ -34,6 +35,16 @@ class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
+    use HasRichText;
+
+    /**
+     * The dynamic rich text attributes.
+     *
+     * @var array<int|string, string>
+     */
+    protected $richTextAttributes = [
+        'content',
+    ];
 
     protected $fillable = [
         'user_id',

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('title')->unique();
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->text('content');
             $table->enum('status', PostStatus::toArray())->default(PostStatus::DRAFT->value);
             $table->timestamps();

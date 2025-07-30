@@ -66,3 +66,6 @@ html {
 .active-bg {
     @apply bg-base-300;
 }
+
+/* TODO Trix file upload */
+.trix-button-group--file-tools { display: none !important; }

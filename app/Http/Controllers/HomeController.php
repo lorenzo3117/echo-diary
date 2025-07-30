@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->where('status', '=', PostStatus::PUBLISHED->value)
             ->orderByDesc('created_at')
             ->with('user')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('home', [
             'posts' => $posts,

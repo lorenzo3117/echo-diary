@@ -25,8 +25,8 @@ class PostFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['string', 'max:255', Rule::unique(Post::class)->ignore($this->post->id), 'required'],
-            'description' => ['string', 'max:255', 'nullable'],
+            'title' => ['string', 'max:255', Rule::unique(Post::class)->ignore($this->post?->id), 'required'],
+            'description' => ['string', 'max:255', 'required'],
             'content' => ['string', 'max:65535', 'required'],
             'status' => [Rule::enum(PostStatus::class), 'nullable'],
         ];

@@ -10,9 +10,9 @@
         @method('PUT')
     @endif
 
-    <x-form.input label="{{ __('Title') }}" name="title" value="{{ $post->title ?? null }}" fullWidth />
-    <x-form.input label="{{ __('Description') }}" name="description" value="{{ $post->description ?? null }}" fullWidth />
-    <x-form.textarea label="{{ __('Content') }}" name="content" value="{{ $post->content ?? null }}" fullWidth />
+    <x-form.input label="{{ __('Title') }}" name="title" value="{{ $post?->title }}" fullWidth />
+    <x-form.input label="{{ __('Description') }}" name="description" value="{{ $post?->description }}" fullWidth />
+    <x-form.trix-input label="{{ __('Content') }}" name="content" value="{!! $post?->content?->toTrixHtml() !!}" />
 
     <div class="hstack">
         <x-form.submit name="status" value="{{ PostStatus::DRAFT->value }}" variant="default">{{ __('Save as draft') }}</x-form.submit>

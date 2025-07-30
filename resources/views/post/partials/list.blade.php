@@ -13,5 +13,7 @@
                 'showUserInfo' => $showUserInfo,
             ])
         @endforeach
+
+        {{ $posts->onEachSide(1)->links() }}
     </div>
 @endif
