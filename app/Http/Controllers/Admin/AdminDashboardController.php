@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
      */
     public function dashboard(AdminDashboardFormRequest $request): View
     {
-        $roles = Role::all()->pluck('name', 'id');
+        $roles = Role::query()->where('name', '!=', 'admin')->pluck('name', 'id');
 
         $users = User::query()
             ->when($request->validated('username'), function ($query) use ($request) {

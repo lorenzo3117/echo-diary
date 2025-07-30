@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
-use Bouncer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -29,7 +29,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user = $request->user();
-        Bouncer::authorize('update', $user);
+        Gate::authorize('update', $user);
 
         return view('profile.edit', [
             'user' => $user,
@@ -42,7 +42,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        Bouncer::authorize('update', $user);
+        Gate::authorize('update', $user);
 
         $user->fill($request->validated());
 
@@ -61,6 +61,7 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
+        Gate::authorize('delete', $user);
 
         $request->validate([
             'password-deletion' => ['required', 'current_password'],

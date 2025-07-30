@@ -27,7 +27,7 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>Email</th>
-                    @can('roles', User::class)
+                    @can('seeRoles', User::class)
                         <th>Roles</th>
                     @endcan
                     <th class="text-right">Actions</th>
@@ -39,7 +39,7 @@
                             <th>{{ $user->id }}</th>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
-                            @can('roles', User::class)
+                            @can('seeRoles', User::class)
                                 <td>
                                     @foreach ($user->roles as $role)
                                         @if($role->name === 'user')
@@ -52,41 +52,44 @@
                             @endcan
                             <td class="hstack justify-end gap-2">
                                 <x-link href="{{ route('profile.show', $user) }}">View</x-link>
-                                @can('roles', User::class)
+                                @can('updateRoles', $user)
                                     <x-link x-data=""
                                             x-on:click.prevent="$dispatch('open-modal', 'user-{{ $user->id }}-roles')">Roles
                                     </x-link>
                                 @endcan
                             </td>
                         </tr>
-
-                        @can('roles', User::class)
-                            <x-modal name="user-{{ $user->id }}-roles" focusable>
-                                <h2>{{ __('User roles') }}</h2>
-
-                                <form method="post" action="{{ route('admin.user.roles', $user) }}" class="vstack">
-                                    @csrf
-
-                                    @foreach($roles as $id => $name)
-                                        <x-form.radio :label="strtoupper($name)" name="roles[]" value="{{ $id }}"
-                                                 checked="{{ $user->roles->contains($id) }}"/>
-                                    @endforeach
-
-                                    <x-form.submit>
-                                        {{ __('Update user') }}
-                                    </x-form.submit>
-                                </form>
-                            </x-modal>
-                        @endcan
                     @endforeach
                 </tbody>
-                @if($users->isEmpty())
-                    <tr class="text-center">
-                        <td colspan="5">{{ __('No users found') }}</td>
-                    </tr>
-                @endif
             </table>
         </div>
+
+        @foreach ($users as $user)
+            @can('updateRoles', $user)
+                <x-modal name="user-{{ $user->id }}-roles" focusable>
+                    <h2>{{ __('User roles') }}</h2>
+
+                    <form method="post" action="{{ route('admin.user.roles', $user) }}" class="vstack">
+                        @csrf
+
+                        @foreach($roles as $id => $name)
+                            <x-form.radio :label="strtoupper($name)" name="roles[]" value="{{ $id }}"
+                                          checked="{{ $user->roles->contains($id) }}"/>
+                        @endforeach
+
+                        <x-form.submit>
+                            {{ __('Update user') }}
+                        </x-form.submit>
+                    </form>
+                </x-modal>
+            @endcan
+        @endforeach
+
+        @if($users->isEmpty())
+            <tr class="text-center">
+                <td colspan="5">{{ __('No users found') }}</td>
+            </tr>
+        @endif
 
         {{ $users->onEachSide(1)->links() }}
     </div>

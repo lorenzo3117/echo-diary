@@ -19,7 +19,6 @@ class RoleSeeder extends Seeder
 
         // User
         Bouncer::allow('moderator')->to(['ban'], User::class);
-        Bouncer::allow('admin')->to(['roles'], User::class);
 
         // Post
         Bouncer::allow('user')->to(['create'], Post::class);
