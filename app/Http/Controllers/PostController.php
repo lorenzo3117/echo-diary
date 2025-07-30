@@ -42,7 +42,6 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
-        // TODO allow guests
         Gate::authorize('view', $post);
 
         return view('post.show', [

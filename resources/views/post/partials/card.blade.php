@@ -23,7 +23,7 @@
                 @if($showUserInfo)
                     <x-profile.avatar :user="$post->user"/>
                 @endif
-                <p class="text-muted">{{ $post->created_at->diffForHumans() }}</p>
+                <p class="text-muted text-sm">{{ $post->created_at->diffForHumans() }}</p>
             </div>
         </div>
     </div>

@@ -23,4 +23,16 @@ class PostPolicy
 
         return $user->isAdmin() || $user->isModerator() || $user->id === $post->user_id;
     }
+
+    /**
+     * Determine whether the user can view the status of the post.
+     */
+    public function viewStatus(?User $user, Post $post): bool
+    {
+        if ($user === null) {
+            return false;
+        }
+
+        return $user->isAdmin() || $user->isModerator() || $user->id === $post->user_id;
+    }
 }
