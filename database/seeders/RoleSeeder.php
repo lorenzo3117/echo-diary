@@ -18,7 +18,6 @@ class RoleSeeder extends Seeder
         Bouncer::allow('moderator')->to('admin-dashboard');
 
         // User
-        Bouncer::allow('user')->toOwn(User::class)->to(['update', 'delete']);
         Bouncer::allow('moderator')->to(['ban'], User::class);
         Bouncer::allow('admin')->to(['roles'], User::class);
 

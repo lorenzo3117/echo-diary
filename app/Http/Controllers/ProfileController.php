@@ -61,7 +61,6 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $user = $request->user();
-        Bouncer::authorize('delete', $user);
 
         $request->validate([
             'password-deletion' => ['required', 'current_password'],
