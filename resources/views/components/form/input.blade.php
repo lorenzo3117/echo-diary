@@ -26,9 +26,9 @@
         value="{{ $inputValue }}"
         placeholder="{{ $placeholder }}"
         @if($required) required @endif
-        {{ $attributes->merge(['class' => 'input ' . ($errors->has($name) ? 'input-error' : '') . ($fullWidth ? 'w-full' : '')]) }}
+        {{ $attributes->merge(['class' => 'input ' . ($errors->has($name) ? 'input-error ' : '') . ($fullWidth ? 'w-full' : '')]) }}
     />
     @error($name)
-    <p class="text-error mt-2">{{ $message }}</p>
+    <p class="text-error mt-1">{{ $message }}</p>
     @enderror
 </div>

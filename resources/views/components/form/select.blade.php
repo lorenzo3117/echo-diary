@@ -30,6 +30,6 @@
         @endforeach
     </select>
     @error($name)
-        <p class="text-error mt-2">{{ $message }}</p>
+        <p class="text-error mt-1">{{ $message }}</p>
     @enderror
 </div>

@@ -24,10 +24,8 @@
             placeholder="{{ $placeholder }}"
             @if($required) required @endif
             {{ $attributes->merge(['class' => 'textarea ' . ($errors->has($name) ? 'textarea-error' : '') . ($fullWidth ? 'w-full' : '')]) }}
-        >
-        {{ $inputValue }}
-    </textarea>
+        >{{ $inputValue }}</textarea>
     @error($name)
-        <p class="text-error mt-2">{{ $message }}</p>
+        <p class="text-error mt-1">{{ $message }}</p>
     @enderror
 </div>
