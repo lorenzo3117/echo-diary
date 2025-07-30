@@ -11,10 +11,14 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Post $post): bool
+    public function view(?User $user, Post $post): bool
     {
         if ($post->status == PostStatus::PUBLISHED->value) {
             return true;
+        }
+
+        if ($user === null) {
+            return false;
         }
 
         return $user->isAdmin() || $user->isModerator() || $user->id === $post->user_id;
