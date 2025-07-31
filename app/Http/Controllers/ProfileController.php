@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ProfileController extends Controller
      */
     public function show(User $user): View
     {
-        $posts = $user->posts()->orderByDesc('created_at')->paginate(10);
+        $posts = Post::forUser($user);
 
         return view('profile.show', [
             'user' => $user,

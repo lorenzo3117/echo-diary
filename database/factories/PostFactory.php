@@ -37,4 +37,14 @@ class PostFactory extends Factory
             'status' => null,
         ]);
     }
+
+    /**
+     * Indicate a model with a status.
+     */
+    public function withStatus(PostStatus $status): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'status' => $status->value,
+        ]);
+    }
 }

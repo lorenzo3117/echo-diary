@@ -25,7 +25,7 @@
 @endphp
 
 @if($post && $status && $variant)
-    @can('viewStatus', $post)
+    @can('view-status', $post)
         <x-badge :variant="$variant">{{ $status }}</x-badge>
     @endcan
 @endif

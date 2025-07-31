@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
-use Bouncer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class AdminDashboardFormRequest extends FormRequest
 {
@@ -12,7 +12,7 @@ class AdminDashboardFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Bouncer::can('admin-dashboard');
+        return Gate::check('admin-dashboard');
     }
 
     /**

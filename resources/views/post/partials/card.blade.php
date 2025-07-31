@@ -12,7 +12,10 @@
         {{--        </figure>--}}
         <div class="card-body">
             <a href="{{ route('post.show', $post) }}" class="vstack">
-                <h3 class="card-title">{{ $post->title }}</h3>
+                <div class="hstack justify-between">
+                    <h3 class="card-title">{{ $post->title }}</h3>
+                    <x-post.status-badge :post="$post"/>
+                </div>
                 <p class="line-clamp-5">{{ $post->description }}</p>
             </a>
             <div @class([
