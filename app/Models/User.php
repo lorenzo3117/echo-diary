@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Bouncer;
+use App\Enum\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
  * @property int $id
@@ -19,14 +18,11 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Silber\Bouncer\Database\Ability> $abilities
- * @property-read int|null $abilities_count
+ * @property string $role
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Silber\Bouncer\Database\Role> $roles
- * @property-read int|null $roles_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()
@@ -35,11 +31,9 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereIs($role)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereIsAll($role)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereIsNot($role)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @mixin \Eloquent
@@ -47,7 +41,7 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRolesAndAbilities;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -93,11 +88,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isModerator(): bool
     {
-        return Bouncer::is($this)->a('moderator');
+        return $this->role === UserRole::MODERATOR->value;
     }
 
     public function isAdmin(): bool
     {
-        return Bouncer::is($this)->an('admin');
+        return $this->role === UserRole::ADMIN->value;
     }
 }

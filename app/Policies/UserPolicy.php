@@ -3,23 +3,40 @@
 namespace App\Policies;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
     /**
-     * Determine whether the user can delete the model.
+     * Perform pre-authorization checks.
      */
-    public function update(User $user, User $model): bool
+    public function before(User $user, string $ability): bool|null
     {
-        return $user->id === $model->id;
+        return $user->isAdmin() ? true : null;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user1, User $model): bool
+    public function update(User $user): bool
     {
-        return $user1->id === $model->id;
+        return Auth::check();
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, User $model): bool
+    {
+        return $user->id === $model->id;
+    }
+
+    /**
+     * Determine whether the user can see the admin dashboard.
+     */
+    public function accessAdminDashboard(User $user): bool
+    {
+        return $user->isAdmin();
     }
 
     /**
@@ -27,7 +44,7 @@ class UserPolicy
      */
     public function seeRoles(User $user): bool
     {
-        return $user->isAdmin();
+        return $user->isModerator() && $user->isAdmin();
     }
 
     /**

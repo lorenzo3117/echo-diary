@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminDashboardFormRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
-use Silber\Bouncer\Database\Role;
 
 class AdminDashboardController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminDashboardController extends Controller
      */
     public function dashboard(AdminDashboardFormRequest $request): View
     {
-        $roles = Role::query()->where('name', '!=', 'admin')->pluck('name', 'id');
+        Gate::authorize('access-admin-dashboard');
 
         $users = User::query()
             ->when($request->validated('username'), function ($query) use ($request) {
@@ -31,7 +32,7 @@ class AdminDashboardController extends Controller
             ->paginate(10);
 
         return view('admin.dashboard', [
-            'roles' => $roles,
+            'roles' => UserRole::toArray(),
             'users' => $users,
             'input' => $request->validated(),
         ]);

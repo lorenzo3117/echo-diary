@@ -4,7 +4,6 @@ namespace Feature\Post;
 
 use App\Models\Post;
 use App\Models\User;
-use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,8 +20,6 @@ class PostUpdateTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(RoleSeeder::class);
-
         $this->dummy = User::factory()->create();
         $this->user = User::factory()->create();
         $this->moderator = User::factory()->moderator()->create();
@@ -31,7 +28,7 @@ class PostUpdateTest extends TestCase
 
     public function test_edit_post_screen_redirect_to_login_for_guest(): void
     {
-        $this->get(route('post.edit',1))
+        $this->get(route('post.edit', 1))
             ->assertRedirectToRoute('login');
     }
 

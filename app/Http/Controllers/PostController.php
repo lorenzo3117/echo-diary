@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\PostFormRequest;
 use App\Models\Post;
-use Bouncer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -17,7 +16,7 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        Bouncer::authorize('create', Post::class);
+        Gate::authorize('create', Post::class);
 
         return view('post.create');
     }
@@ -27,7 +26,7 @@ class PostController extends Controller
      */
     public function store(PostFormRequest $request): RedirectResponse
     {
-        Bouncer::authorize('create', Post::class);
+        Gate::authorize('create', Post::class);
 
         $data = $request->validated();
         $data['user_id'] = Auth::id();
@@ -54,7 +53,7 @@ class PostController extends Controller
      */
     public function edit(Post $post): View
     {
-        Bouncer::authorize('update', $post);
+        Gate::authorize('update', $post);
 
         return view('post.edit', [
             'post' => $post,
@@ -66,7 +65,7 @@ class PostController extends Controller
      */
     public function update(PostFormRequest $request, Post $post): RedirectResponse
     {
-        Bouncer::authorize('update', $post);
+        Gate::authorize('update', $post);
 
         $post->update($request->validated());
 
@@ -78,7 +77,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post): RedirectResponse
     {
-        Bouncer::authorize('delete', $post);
+        Gate::authorize('delete', $post);
 
         $post->delete();
 

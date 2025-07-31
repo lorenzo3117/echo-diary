@@ -7,7 +7,7 @@
         <div class="hstack justify-between mb-8">
             <h2>{{ $user->username }}</h2>
             <div class="hstack">
-                @can('admin-dashboard')
+                @can('access-admin-dashboard')
                     <x-link href="{{ route('admin.dashboard', ['email' => $user->email]) }}" asButton>
                         {{ __('Manage') }}
                     </x-link>

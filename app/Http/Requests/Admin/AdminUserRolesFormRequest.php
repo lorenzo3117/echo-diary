@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Enum\UserRole;
 use App\Models\User;
-use Bouncer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class AdminUserRolesFormRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class AdminUserRolesFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Bouncer::can('roles', User::class);
+        return Gate::check('update-roles', User::class);
     }
 
     /**
@@ -24,7 +26,7 @@ class AdminUserRolesFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'roles' => ['array', 'exists:roles,id', 'required'],
+            'role' => [Rule::enum(UserRole::class), 'required'],
         ];
     }
 }

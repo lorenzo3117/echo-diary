@@ -30,10 +30,11 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(): View
     {
-        $user = $request->user();
-        Gate::authorize('update', $user);
+        Gate::authorize('update', User::class);
+
+        $user = Auth::user();
 
         return view('profile.edit', [
             'user' => $user,
@@ -45,8 +46,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $user = $request->user();
-        Gate::authorize('update', $user);
+        Gate::authorize('update', User::class);
+
+        $user = Auth::user();
 
         $user->fill($request->validated());
 

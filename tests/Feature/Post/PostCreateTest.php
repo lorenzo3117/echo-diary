@@ -4,7 +4,6 @@ namespace Feature\Post;
 
 use App\Models\Post;
 use App\Models\User;
-use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -19,8 +18,6 @@ class PostCreateTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->seed(RoleSeeder::class);
 
         $this->user = User::factory()->create();
         $this->moderator = User::factory()->moderator()->create();

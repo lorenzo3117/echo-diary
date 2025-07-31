@@ -20,7 +20,6 @@
         "php": "^8.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "silber/bouncer": "^1.0",
         "tonysm/rich-text-laravel": "^3.3"
     },
     "require-dev": {

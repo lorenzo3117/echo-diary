@@ -9,7 +9,7 @@
             @endguest
             @auth
                 <li><a href="{{ route('post.create') }}" class="btn btn-outline btn-primary btn-sm">{{ __('Create post') }}</a></li>
-                @can('admin-dashboard')
+                @can('access-admin-dashboard')
                     <li><a href="{{ route('admin.dashboard') }}">{{ __('Admin') }}</a></li>
                 @endcan
                 @include('profile.partials.header-button')

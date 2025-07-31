@@ -72,9 +72,9 @@
                     <form method="post" action="{{ route('admin.user.roles', $user) }}" class="vstack">
                         @csrf
 
-                        @foreach($roles as $id => $name)
-                            <x-form.radio :label="strtoupper($name)" name="roles[]" value="{{ $id }}"
-                                          checked="{{ $user->roles->contains($id) }}"/>
+                        @foreach($roles as $role)
+                            <x-form.radio :label="strtoupper($role->value)" name="role" value="{{ $role->value }}"
+                                          checked="{{ $user->role == $role->value }}"/>
                         @endforeach
 
                         <x-form.submit>

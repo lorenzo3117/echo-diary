@@ -12,7 +12,7 @@ class AdminDashboardFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::check('admin-dashboard');
+        return Gate::check('access-admin-dashboard');
     }
 
     /**
