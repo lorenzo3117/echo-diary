@@ -22,9 +22,8 @@
 
         <div class="divider"></div>
 
-{{--    TODO sanitize HTML--}}
         <div>
-            {!! $post->content !!}
+            {{ sanitizeHtml($post->content) }}
         </div>
     </div>
 @endsection
