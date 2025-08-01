@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Gate;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 /**
@@ -81,7 +82,7 @@ class Post extends Model
             ->when($user != null, function ($query) use ($user) {
                 $query->where('user_id', '!=', $user->id);
             })
-            ->when($onlyShowFollowing, function ($query) use ($user) {
+            ->when(Gate::check('filter-followings', User::class) && $onlyShowFollowing, function ($query) use ($user) {
                 $user->followings()->pluck('users.id')->each(function ($id) use ($query) {
                     $query->where('user_id', $id);
                 });

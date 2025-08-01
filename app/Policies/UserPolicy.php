@@ -66,4 +66,12 @@ class UserPolicy
     {
         return $user->id !== $model->id && $user->isFollowing($model);
     }
+
+    /**
+     * Determine whether the user can filter based on the followings.
+     */
+    public function filterFollowings(User $user): bool
+    {
+        return $user->followings_count > 0;
+    }
 }

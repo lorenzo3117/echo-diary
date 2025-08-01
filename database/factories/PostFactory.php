@@ -20,7 +20,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->words(fake()->numberBetween(3, 10), true),
             'description' => fake()->words(fake()->numberBetween(5, 20), true),
-            'content' => fake()->text(fake()->numberBetween(5000, 5000)),
+            'content' => fake()->randomHtml(10, 10),
             'status' => fake()->randomElement(PostStatus::toArray()),
         ];
     }
