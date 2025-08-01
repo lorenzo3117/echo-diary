@@ -16,7 +16,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can update the model.
      */
     public function update(User $user): bool
     {

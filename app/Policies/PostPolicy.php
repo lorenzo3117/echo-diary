@@ -49,10 +49,6 @@ class PostPolicy
      */
     public function viewStatus(User $user, Post $post): bool
     {
-//        if ($user === null) {
-//            return false;
-//        }
-
         return $user->isAdmin() || $user->isModerator() || $user->id === $post->user_id;
     }
 

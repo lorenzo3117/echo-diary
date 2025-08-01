@@ -39,6 +39,14 @@
     @apply gap-4;
 }
 
+@utility dropdown-content {
+    @apply menu bg-base-100 w-32 mt-2 z-1 shadow;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+}
+
 .card-body p {
     flex-grow: 0;
 }
