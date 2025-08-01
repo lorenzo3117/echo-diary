@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HomeFeedRequest;
 use App\Models\Post;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function home(): View
+    public function home(HomeFeedRequest $request): View
     {
-        $posts = Post::homeFeed();
+        $onlyShowFollowing = $request->validated('following');
+
+        $posts = Post::homeFeed($onlyShowFollowing);
+
+        $request->flash();
 
         return view('home', [
             'posts' => $posts,

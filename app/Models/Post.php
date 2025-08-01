@@ -73,13 +73,18 @@ class Post extends Model
      * Scope a query for the home feed to only show published posts and not the logged in user's own posts.
      */
     #[Scope]
-    protected function homeFeed(Builder $query): LengthAwarePaginator
+    protected function homeFeed(Builder $query, $onlyShowFollowing = false): LengthAwarePaginator
     {
         $user = Auth::user();
 
         return $query
             ->when($user != null, function ($query) use ($user) {
                 $query->where('user_id', '!=', $user->id);
+            })
+            ->when($onlyShowFollowing, function ($query) use ($user) {
+                $user->followings()->pluck('users.id')->each(function ($id) use ($query) {
+                    $query->where('user_id', $id);
+                });
             })
             ->where('status', PostStatus::PUBLISHED->value)
             ->orderByDesc('created_at')
@@ -96,7 +101,7 @@ class Post extends Model
     {
         $loggedInUser = Auth::user();
 
-        if ($loggedInUser == null || (!$loggedInUser?->isModerator() && $loggedInUser?->isAdmin() && $loggedInUser?->isNot($user))) {
+        if ($loggedInUser == null || (!$loggedInUser->isModerator() && !$loggedInUser->isAdmin() && $loggedInUser->id !== $user->id)) {
             $query->where('status', PostStatus::PUBLISHED->value);
         }
 
