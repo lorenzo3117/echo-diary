@@ -15,8 +15,7 @@ class AdminUserController extends Controller
      */
     public function roles(AdminUserRolesFormRequest $request, User $user): RedirectResponse
     {
-        // TODO
-//        Bouncer::sync($user)->roles($request->validated('roles'));
+        Gate::authorize('update-roles', User::class);
 
         return back()
             ->with('success', __('User updated successfully.'));
