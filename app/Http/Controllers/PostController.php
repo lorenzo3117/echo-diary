@@ -33,7 +33,9 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        return redirect()->route('post.show', $post);
+        return redirect()
+            ->route('post.show', $post)
+            ->with('success', 'Post created successfully.');
     }
 
     /**
@@ -69,7 +71,9 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        return redirect()->route('post.show', $post);
+        return redirect()
+            ->route('post.show', $post)
+            ->with('success', 'Post updated successfully.');
     }
 
     /**
@@ -81,6 +85,8 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('post.index');
+        return redirect()
+            ->route('profile.show', Auth::user())
+            ->with('success', 'Post deleted successfully.');
     }
 }

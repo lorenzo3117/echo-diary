@@ -18,6 +18,7 @@ class AdminUserController extends Controller
         // TODO
 //        Bouncer::sync($user)->roles($request->validated('roles'));
 
-        return back()->with('success', __('User updated successfully.'));
+        return back()
+            ->with('success', __('User updated successfully.'));
     }
 }
