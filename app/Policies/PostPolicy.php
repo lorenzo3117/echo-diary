@@ -13,7 +13,11 @@ class PostPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        return $user->isAdmin() ? true : null;
+        if ($user->isAdmin() && $ability !== 'delete') {
+            return true;
+        }
+
+        return null;
     }
 
     /**

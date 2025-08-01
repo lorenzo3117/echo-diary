@@ -16,6 +16,9 @@
                     @can('update', $post)
                         <x-link href="{{ route('post.edit', $post) }}">Edit</x-link>
                     @endcan
+                    @can('delete', $post)
+                        @include('post.partials.delete-modal-menu-link', $post)
+                    @endcan
                 </div>
             </div>
         </div>
