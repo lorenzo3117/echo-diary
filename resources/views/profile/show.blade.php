@@ -1,11 +1,13 @@
-@php use App\Models\User; @endphp
-
 @extends('base')
 
 @section('content')
     <div class="container-small">
         <div class="hstack justify-between mb-8">
-            <h2>{{ $user->username }}</h2>
+            <div class="hstack">
+                <h2>{{ $user->username }}</h2>
+                @include('profile.partials.follow-button', $user)
+            </div>
+
             <div class="hstack">
                 @can('access-admin-dashboard')
                     <x-link href="{{ route('admin.dashboard', ['email' => $user->email]) }}" asButton>

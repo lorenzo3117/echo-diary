@@ -12,7 +12,11 @@ class UserPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        return $user->isAdmin() ? true : null;
+        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow') {
+            return true;
+        }
+
+        return null;
     }
 
     /**
@@ -28,15 +32,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->id === $model->id;
-    }
-
-    /**
-     * Determine whether the user can see the admin dashboard.
-     */
-    public function accessAdminDashboard(User $user): bool
-    {
-        return $user->isAdmin();
+        return $user->id !== $model->id;
     }
 
     /**
@@ -44,7 +40,7 @@ class UserPolicy
      */
     public function seeRoles(User $user): bool
     {
-        return $user->isModerator() && $user->isAdmin();
+        return $user->isModerator();
     }
 
     /**
@@ -52,6 +48,22 @@ class UserPolicy
      */
     public function updateRoles(User $user, User $model): bool
     {
-        return $user->isAdmin() && !$model->isAdmin();
+        return !$model->isAdmin();
+    }
+
+    /**
+     * Determine whether the user can follow the model.
+     */
+    public function follow(User $user, User $model): bool
+    {
+        return $user->id !== $model->id && !$user->isFollowing($model);
+    }
+
+    /**
+     * Determine whether the user can unfollow the model.
+     */
+    public function unfollow(User $user, User $model): bool
+    {
+        return $user->id !== $model->id && $user->isFollowing($model);
     }
 }

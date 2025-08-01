@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enum\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,8 +20,10 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $role
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followers
+ * @property-read int|null $followers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followings
+ * @property-read int|null $followings_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
@@ -84,6 +87,30 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Get the followings for the user.
+     */
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_followings', 'follower_id', 'following_id');
+    }
+
+    /**
+     * Get the followers for the user.
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_followings', 'following_id', 'follower_id');
+    }
+
+    /**
+     * Determine if the current user is following the given user.
+     */
+    public function isFollowing(User $user): bool
+    {
+        return $this->followings->contains($user);
     }
 
     public function isModerator(): bool
