@@ -7,7 +7,6 @@
                 <h2>{{ $user->username }}</h2>
                 @include('profile.partials.follow-button', $user)
             </div>
-
             <div class="hstack">
                 @can('access-admin-dashboard')
                     <x-link href="{{ route('admin.dashboard', ['email' => $user->email]) }}" asButton>
