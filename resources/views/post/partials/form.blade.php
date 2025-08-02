@@ -17,11 +17,9 @@
     <div class="hstack gap-2">
         @if(!$post?->isPublished())
             <x-form.submit-button name="status" value="{{ PostStatus::DRAFT->value }}" variant="default">{{ __('Save as draft (only visible to you)') }}</x-form.submit-button>
-        @endif
-        @if($post)
-            <x-form.submit-button name="status" value="{{ PostStatus::PUBLISHED->value }}">{{ __('Update post') }}</x-form.submit-button>
-        @else
             <x-form.submit-button name="status" value="{{ PostStatus::PUBLISHED->value }}">{{ __('Publish post') }}</x-form.submit-button>
+        @else
+            <x-form.submit-button name="status" value="{{ PostStatus::PUBLISHED->value }}">{{ __('Update post') }}</x-form.submit-button>
         @endif
     </div>
 </form>
