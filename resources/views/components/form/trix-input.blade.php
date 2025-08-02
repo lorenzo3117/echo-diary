@@ -4,6 +4,10 @@
     'value' => null,
 ])
 
+@php
+    $value = @old($name, $value)
+@endphp
+
 <x-rich-text::styles theme="richtextlaravel" />
 
 <div>
