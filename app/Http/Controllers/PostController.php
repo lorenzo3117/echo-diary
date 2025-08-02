@@ -33,6 +33,8 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
+        $post->notifyFollowers();
+
         return redirect()
             ->route('post.show', $post)
             ->with('success', 'Post created successfully.');
@@ -70,6 +72,8 @@ class PostController extends Controller
         Gate::authorize('update', $post);
 
         $post->update($request->validated());
+
+        $post->notifyFollowers();
 
         return redirect()
             ->route('post.show', $post)

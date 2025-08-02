@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\PostStatus;
+use App\Notifications\PostPublishedNotification;
 use Auth;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -68,6 +69,24 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Check if the post is published.
+     */
+    public function isPublished(): bool
+    {
+        return $this->status === PostStatus::PUBLISHED->value;
+    }
+
+    /**
+     * Notify followers of the post.
+     */
+    public function notifyFollowers(): void
+    {
+        Auth::user()->followers->each(function (User $user) {
+            $user->notify(new PostPublishedNotification($this));
+        });
     }
 
     /**
