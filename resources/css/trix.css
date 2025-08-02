@@ -1,4 +1,5 @@
 trix-editor {
-    min-height: 24rem !important;
-    /*overflow-x: scroll;*/
+    min-height: 20rem !important;
+    max-height: 30rem !important;
+    overflow-x: scroll;
 }
