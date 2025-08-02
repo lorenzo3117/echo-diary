@@ -53,7 +53,6 @@ class PostPublishedNotification extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        // TODO hardcoded data, wouldn't show updates
         return [
             'post_id' => $this->createdPost->id,
             'user_id' => $this->createdPost->user->id,
