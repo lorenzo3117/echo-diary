@@ -98,19 +98,27 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get the followers for the user.
-     */
-    public function followers(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'user_followings', 'following_id', 'follower_id');
-    }
-
-    /**
      * Determine if the current user is following the given user.
      */
     public function isFollowing(User $user): bool
     {
         return $this->followings->contains($user);
+    }
+
+    /**
+     * Determine if the current user has followings.
+     */
+    public function hasFollowings(): bool
+    {
+        return $this->followings->isNotEmpty();
+    }
+
+    /**
+     * Get the followers for the user.
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_followings', 'following_id', 'follower_id');
     }
 
     public function isModerator(): bool

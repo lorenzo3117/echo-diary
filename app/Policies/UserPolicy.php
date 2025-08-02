@@ -72,6 +72,6 @@ class UserPolicy
      */
     public function filterFollowings(User $user): bool
     {
-        return $user->followings_count > 0;
+        return $user->hasFollowings();
     }
 }
