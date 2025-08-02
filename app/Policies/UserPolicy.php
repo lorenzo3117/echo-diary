@@ -39,7 +39,7 @@ class UserPolicy
      */
     public function accessAdminDashboard(User $user): bool
     {
-        return $user->isAdmin();
+        return $user->isModerator();
     }
 
     /**
