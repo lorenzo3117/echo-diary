@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\PostFormRequest;
 use App\Models\Post;
+use App\Notifications\PostPublishedNotification;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -88,6 +90,11 @@ class PostController extends Controller
         Gate::authorize('delete', $post);
 
         $post->delete();
+
+        DatabaseNotification::query()
+            ->where('type', PostPublishedNotification::class)
+            ->whereJsonContains('data->post_id', $post->id)
+            ->delete();
 
         return redirect()
             ->route('profile.show', Auth::user())
