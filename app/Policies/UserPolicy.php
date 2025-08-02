@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow') {
+        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow' && $ability !== 'filter-followings') {
             return true;
         }
 
@@ -33,6 +33,14 @@ class UserPolicy
     public function delete(User $user, User $model): bool
     {
         return $user->id !== $model->id;
+    }
+
+    /**
+     * Determine whether the user can access the admin dashboard.
+     */
+    public function accessAdminDashboard(User $user): bool
+    {
+        return true;
     }
 
     /**
