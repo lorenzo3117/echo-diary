@@ -11,7 +11,13 @@ class UserPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow' && $ability !== 'filter-followings' && $ability !== 'update-roles') {
+        if (
+            $user->isAdmin() &&
+            $ability !== 'follow' &&
+            $ability !== 'unfollow' &&
+            $ability !== 'filter-followings' &&
+            $ability !== 'update-roles'
+        ) {
             return true;
         }
 
@@ -23,7 +29,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->id !== $model->id;
+        return $user->id === $model->id;
     }
 
     /**
@@ -31,7 +37,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->id !== $model->id;
+        return $user->id === $model->id;
     }
 
     /**

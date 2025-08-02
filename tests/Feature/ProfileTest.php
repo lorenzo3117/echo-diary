@@ -32,7 +32,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->patch(route('profile.update'), [
+            ->patch(route('profile.update', $user), [
                 'username' => 'Test User',
                 'email' => 'test@example.com',
             ]);
