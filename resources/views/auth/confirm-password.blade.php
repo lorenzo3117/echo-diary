@@ -13,9 +13,9 @@
 
                     <x-form.input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
 
-                    <x-form.submit>
+                    <x-form.submit-button>
                         {{ __('Confirm') }}
-                    </x-form.submit>
+                    </x-form.submit-button>
                 </form>
             </div>
         </div>

@@ -11,7 +11,7 @@
         <x-form.input label="{{ __('Email') }}" name="email" value="{{ $user->email }}"/>
 
         <div>
-            <x-form.submit>{{ __('Save') }}</x-form.submit>
+            <x-form.submit-button>{{ __('Save') }}</x-form.submit-button>
         </div>
     </form>
 </div>

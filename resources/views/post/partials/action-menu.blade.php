@@ -34,9 +34,9 @@
                     @csrf
                     @method('DELETE')
 
-                    <x-form.submit variant="error">
+                    <x-form.submit-button variant="error">
                         {{ __('Delete') }}
-                    </x-form.submit>
+                    </x-form.submit-button>
                 </form>
             </x-modal>
         @endcan

@@ -13,9 +13,9 @@
 
                     <x-form.input type="email" label="{{ __('Email') }}" name="email" fullWidth autofocus/>
 
-                    <x-form.submit fullWidth>
+                    <x-form.submit-button fullWidth>
                         {{ __('Email password reset link') }}
-                    </x-form.submit>
+                    </x-form.submit-button>
                 </form>
             </div>
         </div>

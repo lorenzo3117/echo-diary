@@ -14,7 +14,7 @@
             <x-form.select placeholder="{{ __('Select a role') }}" name="role" value="{{ $input['role'] ?? null }}"
                       :options="$roles" :required="false"/>
 
-            <x-form.submit>{{ __('Search') }}</x-form.submit>
+            <x-form.submit-button>{{ __('Search') }}</x-form.submit-button>
             <div>
                 <x-link href="{{ route('admin.dashboard') }}" asButton>{{ __('Clear') }}</x-link>
             </div>
@@ -77,9 +77,9 @@
                                           checked="{{ $user->role == $role->value }}"/>
                         @endforeach
 
-                        <x-form.submit>
+                        <x-form.submit-button>
                             {{ __('Update user') }}
-                        </x-form.submit>
+                        </x-form.submit-button>
                     </form>
                 </x-modal>
             @endcan

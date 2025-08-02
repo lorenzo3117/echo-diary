@@ -15,7 +15,7 @@
     <x-form.trix-input label="{{ __('Content') }}" name="content" value="{!! $post?->content?->toTrixHtml() !!}" />
 
     <div class="hstack">
-        <x-form.submit name="status" value="{{ PostStatus::DRAFT->value }}" variant="default">{{ __('Save as draft') }}</x-form.submit>
-        <x-form.submit name="status" value="{{ PostStatus::PUBLISHED->value }}">{{ __('Publish post') }}</x-form.submit>
+        <x-form.submit-button name="status" value="{{ PostStatus::DRAFT->value }}" variant="default">{{ __('Save as draft') }}</x-form.submit-button>
+        <x-form.submit-button name="status" value="{{ PostStatus::PUBLISHED->value }}">{{ __('Publish post') }}</x-form.submit-button>
     </div>
 </form>

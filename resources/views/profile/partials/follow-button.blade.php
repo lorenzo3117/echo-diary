@@ -7,10 +7,10 @@
         <form action="{{ route('user.follow', $user) }}" method="POST">
             @csrf
 
-            <x-form.submit variant="secondary" isSmall>
+            <x-form.submit-button variant="secondary" isSmall>
                 <x-phosphor-user-plus/>
                 {{ __('Follow') }}
-            </x-form.submit>
+            </x-form.submit-button>
         </form>
     @endcan
     @can('unfollow', $user)
@@ -18,10 +18,10 @@
             @csrf
             @method('DELETE')
 
-            <x-form.submit variant="secondary" isOutline isSmall>
+            <x-form.submit-button variant="secondary" isOutline isSmall>
                 <x-phosphor-user-minus/>
                 {{ __('Unfollow') }}
-            </x-form.submit>
+            </x-form.submit-button>
         </form>
     @endcan
 @endif

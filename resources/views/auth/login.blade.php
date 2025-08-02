@@ -13,9 +13,9 @@
                     <x-form.input type="password" label="{{ __('Password') }}" name="password" fullWidth/>
                     <x-form.checkbox label="{{ __('Remember me') }}" name="remember"/>
 
-                    <x-form.submit fullWidth>
+                    <x-form.submit-button fullWidth>
                         {{ __('Log in') }}
-                    </x-form.submit>
+                    </x-form.submit-button>
                     <x-link href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </x-link>
