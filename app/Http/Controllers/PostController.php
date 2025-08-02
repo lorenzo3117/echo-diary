@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Post\PostFormRequest;
 use App\Models\Post;
 use App\Notifications\PostPublishedNotification;
+use App\Service\TrixAttachmentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
@@ -85,16 +86,18 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post): RedirectResponse
+    public function destroy(Post $post, TrixAttachmentService $service): RedirectResponse
     {
         Gate::authorize('delete', $post);
 
-        $post->delete();
+        $service->delete($post->content->attachments());
 
         DatabaseNotification::query()
             ->where('type', PostPublishedNotification::class)
             ->whereJsonContains('data->post_id', $post->id)
             ->delete();
+
+        $post->delete();
 
         return redirect()
             ->route('profile.show', Auth::user())
