@@ -42,7 +42,7 @@
                         <th>{{ $user->id }}</th>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
-                        @can('seeRoles', User::class)
+                        @can('see-roles', User::class)
                             <td>
                                 @if($user->role === UserRole::USER->value)
                                     <x-badge variant="neutral">{{ strtoupper($user->role) }}</x-badge>
@@ -53,9 +53,9 @@
                         @endcan
                         <td class="hstack justify-end gap-2">
                             <x-link href="{{ route('profile.show', $user) }}">View</x-link>
-                            @can('updateRoles', $user)
-                                <x-link x-data=""
-                                        x-on:click.prevent="$dispatch('open-modal', 'user-{{ $user->id }}-roles')">Roles
+                            @can('update-roles', $user)
+                                <x-link x-data="" x-on:click.prevent="$dispatch('open-modal', 'user-{{ $user->id }}-roles')">
+                                    Roles
                                 </x-link>
                             @endcan
                         </td>

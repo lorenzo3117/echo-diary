@@ -11,7 +11,7 @@ class UserPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow' && $ability !== 'filter-followings') {
+        if ($user->isAdmin() && $ability !== 'follow' && $ability !== 'unfollow' && $ability !== 'filter-followings' && $ability !== 'update-roles') {
             return true;
         }
 
