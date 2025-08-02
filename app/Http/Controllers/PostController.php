@@ -33,7 +33,7 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        $post->notifyFollowers();
+        $this->processPost($post);
 
         return redirect()
             ->route('post.show', $post)
@@ -73,7 +73,7 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        $post->notifyFollowers();
+        $this->processPost($post);
 
         return redirect()
             ->route('post.show', $post)
@@ -92,5 +92,15 @@ class PostController extends Controller
         return redirect()
             ->route('profile.show', Auth::user())
             ->with('success', 'Post deleted successfully.');
+    }
+
+    // TODO refactor this logic?
+    private function processPost(Post $post): void
+    {
+        if ($post->isPublished() && $post->first_published_at === null) {
+            $post->first_published_at = now();
+            $post->save();
+            $post->notifyFollowers();
+        }
     }
 }

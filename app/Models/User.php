@@ -24,6 +24,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $followers_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $followings
  * @property-read int|null $followings_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

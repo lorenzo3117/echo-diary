@@ -22,6 +22,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $first_published_at
  * @property mixed $content
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
@@ -32,6 +33,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @method static Builder<static>|Post query()
  * @method static Builder<static>|Post whereCreatedAt($value)
  * @method static Builder<static>|Post whereDescription($value)
+ * @method static Builder<static>|Post whereFirstPublishedAt($value)
  * @method static Builder<static>|Post whereId($value)
  * @method static Builder<static>|Post whereStatus($value)
  * @method static Builder<static>|Post whereTitle($value)
@@ -61,6 +63,7 @@ class Post extends Model
         'description',
         'content',
         'status',
+        'first_published_at',
     ];
 
     /**
@@ -77,6 +80,14 @@ class Post extends Model
     public function isPublished(): bool
     {
         return $this->status === PostStatus::PUBLISHED->value;
+    }
+
+    /**
+     * Check if the post is the first time publishing.
+     */
+    public function isFirstTimePublishing(): bool
+    {
+        return $this->isPublished() && $this->first_published_at !== $this->updated_at;
     }
 
     /**

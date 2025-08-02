@@ -65,6 +65,6 @@ class PostPublishedNotification extends Notification implements ShouldQueue
      */
     public function shouldSend(object $notifiable, string $channel): bool
     {
-        return $this->createdPost->isPublished();
+        return $this->createdPost->isFirstTimePublishing();
     }
 }

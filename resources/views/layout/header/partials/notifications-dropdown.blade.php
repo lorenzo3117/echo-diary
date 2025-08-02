@@ -27,8 +27,6 @@
                 <li>
                     <x-link href="{{ route('notification.index') }}">{{ __('View all notifications') }}</x-link>
                 </li>
-            @else
-                <p class="text-center py-2 px-8">No notifications</p>
             @endif
         </ul>
     </div>
