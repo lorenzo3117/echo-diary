@@ -18,6 +18,10 @@
             </div>
         </div>
 
+        @include('profile.partials.stats')
+
+        <div class="divider my-8"></div>
+
         @include('post.partials.list', [
             'posts' => $posts,
             'showUserInfo' => false,
