@@ -14,7 +14,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-base-100 min-h-screen">
-@include('layout.header')
+@include('layout.header.index')
 
 <main class="container py-8">
     @include('layout.alerts')

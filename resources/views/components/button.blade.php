@@ -4,6 +4,7 @@
     'isCircle' => false,
     'isOutline' => false,
     'isSmall' => false,
+    'isGhost' => false,
 ])
 
 <button @class([
@@ -15,6 +16,7 @@
     "btn-circle" => $isCircle,
     "btn-outline" => $isOutline,
     "btn-sm" => $isSmall,
+    "btn-ghost" => $isGhost,
 ]) {{ $attributes }}>
     {{ $slot }}
 </button>

@@ -28,7 +28,7 @@ class PostPublishedNotification extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,6 +44,20 @@ class PostPublishedNotification extends Notification implements ShouldQueue
             ->greeting('Hello ' . $notifiableUsername . ',')
             ->line(new HtmlString('A new post has been published by <strong>' . $creatorUsername . '</strong>!'))
             ->action('View the post here.', url(route('post.show', $this->createdPost)));
+    }
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(object $notifiable): array
+    {
+        // TODO hardcoded data, wouldn't show updates
+        return [
+            'post_id' => $this->createdPost->id,
+            'user_id' => $this->createdPost->user->id,
+        ];
     }
 
     /**

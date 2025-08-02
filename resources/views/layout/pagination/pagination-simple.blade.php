@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}">
         {{-- Mobile, Simple --}}
-        <div class="flex justify-end gap-4">
+        <div class="flex justify-end gap-2">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <button disabled aria-label="{{ __('pagination.previous') }}" class="join-item btn btn-disabled">

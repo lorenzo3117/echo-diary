@@ -10,12 +10,18 @@
                 <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
             @endguest
             @auth
-                <li><a href="{{ route('post.create') }}"
-                       class="btn btn-outline btn-primary btn-sm">{{ __('Create post') }}</a></li>
+                <li>
+                    <a href="{{ route('post.create') }}"
+                       class="btn btn-outline btn-primary btn-sm"
+                    >
+                        {{ __('Create post') }}
+                    </a>
+                </li>
                 @can('access-admin-dashboard', User::class)
                     <li><a href="{{ route('admin.dashboard') }}">{{ __('Admin') }}</a></li>
                 @endcan
-                @include('profile.partials.header-button')
+                @include('layout.header.partials.notifications-dropdown')
+                @include('layout.header.partials.profile-dropdown')
             @endauth
         </ul>
     </div>

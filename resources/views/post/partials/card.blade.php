@@ -13,7 +13,7 @@
         <div class="card-body">
             <a href="{{ route('post.show', $post) }}" class="vstack">
                 <div class="hstack justify-between">
-                    <h3 class="card-title">{{ $post->title }}</h3>
+                    <h3 class="card-title line-clamp-2">{{ $post->title }}</h3>
                     <x-post.status-badge :post="$post"/>
                 </div>
                 <p class="line-clamp-5">{{ $post->description }}</p>

@@ -44,7 +44,7 @@ html {
 }
 
 @utility dropdown-content {
-    @apply menu bg-base-100 w-32 mt-2 z-1 shadow;
+    @apply menu bg-base-100 min-w-32 mt-2 z-1 shadow;
 }
 .dropdown-content a {
     text-decoration: none;

@@ -5,7 +5,7 @@
 @if($user)
     <div class="flex gap-2">
         <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+            <div tabindex="0" role="button" class="btn btn-circle">
                 <x-profile.avatar :user="$user" :showUsername="false" :navigateToProfile="false"/>
             </div>
             <ul tabindex="0" class="dropdown-content">

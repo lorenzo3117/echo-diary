@@ -22,7 +22,7 @@
         @if($navigateToProfile) <a href="{{ route('profile.show', $user) }}" class="block"> @endif
             <div class="hstack gap-2">
                 <div class="avatar avatar-placeholder">
-                    <div class="{{ $bg_color }} text-neutral-content w-8 rounded-full">
+                    <div class="{{ $bg_color }} text-neutral-content w-10 rounded-full">
                         <span>{{ $avatar_placeholder }}</span>
                     </div>
                 </div>

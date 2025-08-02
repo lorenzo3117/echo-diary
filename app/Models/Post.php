@@ -26,7 +26,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
  * @method static Builder<static>|Post forUser(?\App\Models\User $user)
- * @method static Builder<static>|Post homeFeed()
+ * @method static Builder<static>|Post homeFeed($onlyShowFollowing = false)
  * @method static Builder<static>|Post newModelQuery()
  * @method static Builder<static>|Post newQuery()
  * @method static Builder<static>|Post query()
