@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -12,7 +13,7 @@ class AdminDashboardFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::check('access-admin-dashboard');
+        return Gate::check('access-admin-dashboard', User::class);
     }
 
     /**

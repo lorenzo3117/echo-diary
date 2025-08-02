@@ -16,7 +16,9 @@ class AdminDashboardController extends Controller
      */
     public function dashboard(AdminDashboardFormRequest $request): View
     {
-        Gate::authorize('access-admin-dashboard');
+        Gate::authorize('access-admin-dashboard', User::class);
+
+        $roles = [UserRole::USER->value, UserRole::MODERATOR->value];
 
         $users = User::query()
             ->when($request->validated('username'), function ($query) use ($request) {
@@ -32,7 +34,7 @@ class AdminDashboardController extends Controller
             ->paginate(10);
 
         return view('admin.dashboard', [
-            'roles' => UserRole::toArray(),
+            'roles' => $roles,
             'users' => $users,
             'input' => $request->validated(),
         ]);

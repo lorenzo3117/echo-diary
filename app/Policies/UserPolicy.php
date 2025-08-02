@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -22,9 +21,9 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user): bool
+    public function update(User $user, User $model): bool
     {
-        return Auth::check();
+        return $user->id !== $model->id;
     }
 
     /**
@@ -40,7 +39,7 @@ class UserPolicy
      */
     public function accessAdminDashboard(User $user): bool
     {
-        return true;
+        return $user->isAdmin();
     }
 
     /**

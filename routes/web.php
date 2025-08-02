@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->except('show');
 
     // Admin
-    Route::middleware('can:access-admin-dashboard')->prefix('admin')->name("admin.")->group(function () {
+    Route::prefix('admin')->name("admin.")->group(function () {
         Route::get('', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
         Route::post('/user/{user}/roles', [AdminUserController::class, 'roles'])->name('user.roles');
     });

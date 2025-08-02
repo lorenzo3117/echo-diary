@@ -32,9 +32,9 @@ class ProfileController extends Controller
      */
     public function edit(): View
     {
-        Gate::authorize('update', User::class);
-
         $user = Auth::user();
+
+        Gate::authorize('update', $user);
 
         return view('profile.edit', [
             'user' => $user,
@@ -46,9 +46,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        Gate::authorize('update', User::class);
-
         $user = Auth::user();
+
+        Gate::authorize('update', $user);
 
         $user->fill($request->validated());
 

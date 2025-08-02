@@ -1,4 +1,7 @@
-@php use App\Models\User; @endphp
+@php
+    use App\Models\User;
+    use App\Enum\UserRole;
+@endphp
 
 <div class="card">
     <div class="card-body">
@@ -8,11 +11,11 @@
             @csrf
 
             <x-form.input placeholder="{{ __('Username') }}" name="username" value="{{ $input['username'] ?? null }}"
-                     :required="false"/>
+                          :required="false"/>
             <x-form.input placeholder="{{ __('Email') }}" name="email" value="{{ $input['email'] ?? null }}"
-                     :required="false"/>
+                          :required="false"/>
             <x-form.select placeholder="{{ __('Select a role') }}" name="role" value="{{ $input['role'] ?? null }}"
-                      :options="$roles" :required="false"/>
+                           :options="$roles" :required="false"/>
 
             <x-form.submit-button>{{ __('Search') }}</x-form.submit-button>
             <div>
@@ -34,32 +37,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <th>{{ $user->id }}</th>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->email }}</td>
-                            @can('seeRoles', User::class)
-                                <td>
-                                    @foreach ($user->roles as $role)
-                                        @if($role->name === 'user')
-                                            <x-badge variant="neutral">{{ strtoupper($role->name) }}</x-badge>
-                                        @else
-                                            <x-badge variant="primary">{{ strtoupper($role->name) }}</x-badge>
-                                        @endif
-                                    @endforeach
-                                </td>
-                            @endcan
-                            <td class="hstack justify-end gap-2">
-                                <x-link href="{{ route('profile.show', $user) }}">View</x-link>
-                                @can('updateRoles', $user)
-                                    <x-link x-data=""
-                                            x-on:click.prevent="$dispatch('open-modal', 'user-{{ $user->id }}-roles')">Roles
-                                    </x-link>
-                                @endcan
+                @foreach ($users as $user)
+                    <tr>
+                        <th>{{ $user->id }}</th>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
+                        @can('seeRoles', User::class)
+                            <td>
+                                @if($user->role === UserRole::USER->value)
+                                    <x-badge variant="neutral">{{ strtoupper($user->role) }}</x-badge>
+                                @else
+                                    <x-badge variant="primary">{{ strtoupper($user->role) }}</x-badge>
+                                @endif
                             </td>
-                        </tr>
-                    @endforeach
+                        @endcan
+                        <td class="hstack justify-end gap-2">
+                            <x-link href="{{ route('profile.show', $user) }}">View</x-link>
+                            @can('updateRoles', $user)
+                                <x-link x-data=""
+                                        x-on:click.prevent="$dispatch('open-modal', 'user-{{ $user->id }}-roles')">Roles
+                                </x-link>
+                            @endcan
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -73,8 +74,12 @@
                         @csrf
 
                         @foreach($roles as $role)
-                            <x-form.radio :label="strtoupper($role->value)" name="role" value="{{ $role->value }}"
-                                          checked="{{ $user->role == $role->value }}"/>
+                            <x-form.radio :label="strtoupper($role)"
+                                          name="role"
+                                          :for="$role"
+                                          :value="$role"
+                                          checked="{{ $user->role == $role }}"
+                            />
                         @endforeach
 
                         <x-form.submit-button>
