@@ -6,7 +6,7 @@
     <div class="container-small">
         <div class="hstack justify-between mb-8">
             <div class="hstack">
-                <h2>{{ $user->username }}</h2>
+                <x-profile.avatar :user="$user" variant="big" />
                 @include('profile.partials.follow-button', $user)
             </div>
             <div class="hstack">
