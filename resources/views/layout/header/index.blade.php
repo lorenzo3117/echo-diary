@@ -2,8 +2,9 @@
 
 <div class="shadow-sm">
     <div class="flex items-center min-h-16 container">
-        <div class="flex-1">
+        <div class="flex-1 hstack">
             <a href="{{ route('home') }}" class="font-bold">EchoDiary</a>
+            @include('layout.header.partials.locale-select')
         </div>
         <ul class="menu menu-horizontal items-center gap-2">
             @guest

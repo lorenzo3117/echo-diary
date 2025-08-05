@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -49,6 +50,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Unauthenticated routes
+Route::post('lang', [LocaleController::class, 'update'])->name('lang');
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/profile/{user:username}', [ProfileController::class, 'show'])->name('profile.show');

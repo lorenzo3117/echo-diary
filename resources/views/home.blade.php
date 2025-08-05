@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-small">
         <div class="hstack justify-between mb-8">
-            <h1>Your feed</h1>
+            <h1>{{ __('Your feed') }}</h1>
             @can('filter-followings', User::class)
                 <form method="GET" action="{{ route('home') }}" id="followingForm">
                     <x-form.checkbox
