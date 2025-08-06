@@ -20,7 +20,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('profile.show', $user)
-            ->with('success', 'You are now following ' . $user->username . '.');
+            ->with('success', __('You are now following :username.', ['username' => $user->username]));
     }
 
     /**
@@ -28,12 +28,12 @@ class UserController extends Controller
      */
     public function unfollow(User $user): RedirectResponse
     {
-         Gate::authorize('unfollow', $user);
+        Gate::authorize('unfollow', $user);
 
         $user->followers()->detach(Auth::user());
 
         return redirect()
             ->route('profile.show', $user)
-            ->with('success', 'You are no longer following ' . $user->username . '.');
+            ->with('success', __('You are no longer following :username.', ['username' => $user->username]));
     }
 }

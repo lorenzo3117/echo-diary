@@ -308,5 +308,7 @@
     "pagination.previous": "pagination.previous",
     "password": "The provided password is incorrect.",
     "results": "results",
-    "to": "to"
+    "to": "to",
+    "You are now following :username.": "You are now following :username.",
+    "You are no longer following :username.": "You are no longer following :username."
 }
