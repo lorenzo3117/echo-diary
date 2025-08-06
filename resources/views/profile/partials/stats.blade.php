@@ -1,20 +1,21 @@
 @props([
     'user' => null,
+    'postsCount' => 0,
 ])
 
 @php
     $stats = [
         [
             'title' => __('Posts'),
-            'value' => $user->posts->count(),
+            'value' => $postsCount,
         ],
         [
             'title' => __('Followers'),
-            'value' => $user->followers->count(),
+            'value' => $user?->followers->count(),
         ],
         [
             'title' => __('Following'),
-            'value' => $user->followings->count(),
+            'value' => $user?->followings->count(),
         ],
     ];
 @endphp

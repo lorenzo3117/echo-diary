@@ -20,10 +20,13 @@ class ProfileController extends Controller
     public function show(User $user): View
     {
         $posts = Post::forUser($user);
+        $postsCount = $posts->count();
+        $postsPaginated = $posts->paginate(10);
 
         return view('profile.show', [
             'user' => $user,
-            'posts' => $posts,
+            'posts' => $postsPaginated,
+            'postsCount' => $postsCount,
         ]);
     }
 

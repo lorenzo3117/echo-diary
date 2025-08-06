@@ -128,7 +128,7 @@ class Post extends Model
      * Scope a query to filter based on a user's permissions.
      */
     #[Scope]
-    protected function forUser(Builder $query, ?User $user): LengthAwarePaginator
+    protected function forUser(Builder $query, ?User $user): Builder
     {
         $loggedInUser = Auth::user();
 
@@ -136,6 +136,6 @@ class Post extends Model
             $query->where('status', PostStatus::PUBLISHED->value);
         }
 
-        return $query->where('user_id', $user->id)->orderByDesc('created_at')->paginate(10);
+        return $query->where('user_id', $user->id)->orderByDesc('created_at');
     }
 }

@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        @include('profile.partials.stats')
+        @include('profile.partials.stats', ['user' => $user, 'postsCount' => $postsCount])
 
         <div class="divider my-8"></div>
 
