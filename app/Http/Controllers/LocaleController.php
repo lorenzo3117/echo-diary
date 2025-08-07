@@ -9,6 +9,8 @@ class LocaleController extends Controller
 {
     /**
      * Updates the locale.
+     *
+     * TODO store locale in DB
      */
     public function update(LocaleUpdateRequest $request): RedirectResponse
     {
