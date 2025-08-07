@@ -3,10 +3,13 @@
 @section('content')
     <div class="container-small vstack">
         <div class="vstack gap-8">
-            <div class="hstack">
-                <x-profile.avatar :user="$post->user"/>
-                <p class="text-muted text-sm">&#x2022;</p>
-                <p class="text-muted text-sm">{{ $post->created_at->diffForHumans() }}</p>
+            <div class="hstack justify-between">
+                <div class="hstack">
+                    <x-profile.avatar :user="$post->user"/>
+                    <p class="text-muted text-sm">&#x2022;</p>
+                    <p class="text-muted text-sm">{{ $post->created_at->diffForHumans() }}</p>
+                </div>
+                @include('post.partials.like-form', ['posts' => $post])
             </div>
 
             <div class="hstack justify-between">

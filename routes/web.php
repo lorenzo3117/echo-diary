@@ -36,8 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
 
     // Post
-    Route::resource('post', PostController::class)
-        ->except('show');
+    Route::resource('post', PostController::class)->except('show');
+    Route::post('/post/{post}/like', [PostController::class, 'favorite'])->name('post.like');
 
     // Trix attachment
     Route::post('/trix-attachment', [TrixAttachmentController::class, 'store']);

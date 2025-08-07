@@ -13,7 +13,7 @@ class PostPolicy
      */
     public function before(User $user, string $ability): bool|null
     {
-        if ($user->isAdmin() && $ability !== 'delete') {
+        if ($user->isAdmin() && $ability !== 'delete' && $ability !== 'favorite') {
             return true;
         }
 
@@ -66,5 +66,13 @@ class PostPolicy
     public function delete(User $user, Post $post): bool
     {
         return $user->id === $post->user_id;
+    }
+
+    /**
+     * Determine whether the user can favorite a post.
+     */
+    public function favorite(User $user, Post $post): bool
+    {
+        return $post->isPublished();
     }
 }

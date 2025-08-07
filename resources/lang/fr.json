@@ -310,5 +310,7 @@
     "results": "résultats",
     "to": "à",
     "You are now following :username.": "Vous suivez maintenant :username.",
-    "You are no longer following :username.": "Vous ne suivez plus :username."
+    "You are no longer following :username.": "Vous ne suivez plus :username.",
+    "Favorite": "Ajouter aux favoris",
+    "Unfavorite": "Retirer des favoris"
 }

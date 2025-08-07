@@ -310,5 +310,7 @@
     "results": "resultaten",
     "to": "tot",
     "You are now following :username.": "Je volgt nu :username.",
-    "You are no longer following :username.": "Je volgt :username niet meer."
+    "You are no longer following :username.": "Je volgt :username niet meer.",
+    "Favorite": "Favoriet toevoegen",
+    "Unfavorite": "Favoriet verwijderen"
 }

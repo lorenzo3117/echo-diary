@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Gate;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
@@ -98,6 +99,14 @@ class Post extends Model
         Auth::user()->followers->each(function (User $user) {
             $user->notify(new PostPublishedNotification($this));
         });
+    }
+
+    /**
+     * Get users that favorited the post.
+     */
+    public function favorites(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'user_id');
     }
 
     /**

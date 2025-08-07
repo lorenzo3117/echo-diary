@@ -104,6 +104,25 @@ class PostController extends Controller
             ->with('success', 'Post deleted successfully.');
     }
 
+    /**
+     * Favorite a post.
+     */
+    public function favorite(Post $post): RedirectResponse
+    {
+        Gate::authorize('favorite', $post);
+
+        $user = Auth::user();
+
+        $post->favorites()->toggle($user);
+        $post->save();
+
+        if ($post->favorites()->where('user_id', '=', $user->id)->exists()) {
+            return back()->with('success', 'Post added to your favorites successfully.');
+        }
+
+        return back()->with('success', 'Post removed from your favorites successfully.');
+    }
+
     // TODO refactor this logic?
     private function processPost(Post $post): void
     {
