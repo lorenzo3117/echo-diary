@@ -18,7 +18,11 @@
             </div>
         </div>
 
-        @include('profile.partials.stats', ['user' => $user, 'postsCount' => $postsCount])
+        @include('profile.partials.stats', [
+            'user' => $user,
+            'postsCount' => $postsCount,
+            'postsFavoritesCount' => $postsFavoritesCount,
+        ])
 
         <div class="divider my-8"></div>
 

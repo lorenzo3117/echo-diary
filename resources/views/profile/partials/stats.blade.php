@@ -1,6 +1,7 @@
 @props([
     'user' => null,
     'postsCount' => 0,
+    'postsFavoritesCount' => 0,
 ])
 
 @php
@@ -8,6 +9,10 @@
         [
             'title' => __('Posts'),
             'value' => $postsCount,
+        ],
+        [
+            'title' => __('Favorites'),
+            'value' => $postsFavoritesCount,
         ],
         [
             'title' => __('Followers'),

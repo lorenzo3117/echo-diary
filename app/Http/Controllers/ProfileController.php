@@ -20,13 +20,18 @@ class ProfileController extends Controller
     public function show(User $user): View
     {
         $posts = Post::forUser($user);
-        $postsCount = $posts->count();
-        $postsPaginated = $posts->paginate(10);
+        $postsCount = $posts->total();
+
+        $postsFavoritesCount = Post::where('user_id', $user->id)
+            ->withCount('favorites')
+            ->get()
+            ->sum('favorites_count');
 
         return view('profile.show', [
             'user' => $user,
-            'posts' => $postsPaginated,
+            'posts' => $posts,
             'postsCount' => $postsCount,
+            'postsFavoritesCount' => $postsFavoritesCount,
         ]);
     }
 
