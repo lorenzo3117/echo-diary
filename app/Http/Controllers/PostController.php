@@ -40,7 +40,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('post.show', $post)
-            ->with('success', 'Post created successfully.');
+            ->with('success', __('Post created successfully.'));
     }
 
     /**
@@ -80,7 +80,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('post.show', $post)
-            ->with('success', 'Post updated successfully.');
+            ->with('success', __('Post updated successfully.'));
     }
 
     /**
@@ -101,7 +101,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('profile.show', Auth::user())
-            ->with('success', 'Post deleted successfully.');
+            ->with('success', __('Post deleted successfully.'));
     }
 
     /**
@@ -117,10 +117,10 @@ class PostController extends Controller
         $post->save();
 
         if ($post->favorites()->where('user_id', '=', $user->id)->exists()) {
-            return back()->with('success', 'Post added to your favorites successfully.');
+            return back()->with('success', __('Post added to your favorites successfully.'));
         }
 
-        return back()->with('success', 'Post removed from your favorites successfully.');
+        return back()->with('success', __('Post removed from your favorites successfully.'));
     }
 
     // TODO refactor this logic?

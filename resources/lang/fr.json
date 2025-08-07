@@ -312,5 +312,10 @@
     "You are now following :username.": "Vous suivez maintenant :username.",
     "You are no longer following :username.": "Vous ne suivez plus :username.",
     "Favorite": "Ajouter aux favoris",
-    "Unfavorite": "Retirer des favoris"
+    "Unfavorite": "Retirer des favoris",
+    "Post created successfully.": "Post créé avec succès.",
+    "Post updated successfully.": "Post mis à jour avec succès.",
+    "Post deleted successfully.": "Post supprimé avec succès.",
+    "Post added to your favorites successfully.": "Post ajouté à vos favoris avec succès.",
+    "Post removed from your favorites successfully.": "Post retiré de vos favoris avec succès."
 }
