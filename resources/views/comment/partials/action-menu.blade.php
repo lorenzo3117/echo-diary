@@ -12,7 +12,7 @@
                 @can('update', $comment)
                     <li>
                         <x-link x-data="" x-on:click.prevent="$dispatch('open-modal', 'update-comment-{{ $comment->id }}')">
-                            {{ __('Update') }}
+                            {{ __('Edit') }}
                         </x-link>
                     </li>
                 @endcan
