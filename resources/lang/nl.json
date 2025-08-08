@@ -311,8 +311,6 @@
     "to": "tot",
     "You are now following :username.": "Je volgt nu :username.",
     "You are no longer following :username.": "Je volgt :username niet meer.",
-    "Favorite": "Favoriet toevoegen",
-    "Unfavorite": "Favoriet verwijderen",
     "Post created successfully.": "Post aangemaakt met succes.",
     "Post updated successfully.": "Post aangepast met succes.",
     "Post deleted successfully.": "Post verwijderd met succes.",

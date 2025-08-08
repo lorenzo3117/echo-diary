@@ -9,7 +9,7 @@
                     <p class="text-muted text-sm">&#x2022;</p>
                     <p class="text-muted text-sm">{{ $post->created_at->diffForHumans() }}</p>
                 </div>
-                @include('post.partials.like-form', ['posts' => $post])
+                @include('post.partials.favorite-form', ['posts' => $post])
             </div>
 
             <div class="hstack justify-between my-4">

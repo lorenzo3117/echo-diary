@@ -311,8 +311,6 @@
     "to": "to",
     "You are now following :username.": "You are now following :username.",
     "You are no longer following :username.": "You are no longer following :username.",
-    "Favorite": "Favorite",
-    "Unfavorite": "Unfavorite",
     "Post created successfully.": "Post created successfully.",
     "Post updated successfully.": "Post updated successfully.",
     "Post deleted successfully.": "Post deleted successfully.",

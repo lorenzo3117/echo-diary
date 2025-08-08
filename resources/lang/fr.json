@@ -311,8 +311,6 @@
     "to": "à",
     "You are now following :username.": "Vous suivez maintenant :username.",
     "You are no longer following :username.": "Vous ne suivez plus :username.",
-    "Favorite": "Ajouter aux favoris",
-    "Unfavorite": "Retirer des favoris",
     "Post created successfully.": "Post créé avec succès.",
     "Post updated successfully.": "Post mis à jour avec succès.",
     "Post deleted successfully.": "Post supprimé avec succès.",

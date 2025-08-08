@@ -8,14 +8,12 @@
             @csrf
 
             @if($post->favorites->contains(auth()->user()))
-                <x-form.submit-button variant="secondary">
+                <x-form.submit-button variant="secondary" isCircle isOutline>
                     <x-phosphor-heart-fill/>
-                    {{ __('Unfavorite') }}
                 </x-form.submit-button>
             @else
-                <x-form.submit-button variant="secondary">
+                <x-form.submit-button variant="secondary" isCircle isOutline>
                     <x-phosphor-heart/>
-                    {{ __('Favorite') }}
                 </x-form.submit-button>
             @endif
         </form>
