@@ -24,7 +24,8 @@ class CommentController extends Controller
 
         $post->comments()->create($data);
 
-        return back()
+        return redirect()
+            ->to(url()->previous() . '#comments')
             ->with('success', __('Comment added successfully.'));
     }
 
@@ -37,7 +38,9 @@ class CommentController extends Controller
 
         $comment->update($request->validated());
 
-        return back()->with('success', __('Comment updated successfully.'));
+        return redirect()
+            ->to(url()->previous() . '#comments')
+            ->with('success', __('Comment updated successfully.'));
     }
 
     /**
@@ -49,6 +52,8 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        return back()->with('success', __('Comment deleted successfully.'));
+        return redirect()
+            ->to(url()->previous() . '#comments')
+            ->with('success', __('Comment deleted successfully.'));
     }
 }
