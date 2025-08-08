@@ -5,12 +5,12 @@
 [![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black)](https://alpinejs.dev/)
 [![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-Echo Diary is a modern, feature-rich journaling web application built with Laravel and DaisyUI. It provides users with a beautiful and intuitive platform to document their thoughts, experiences, and memories in a secure and organized manner.
+Echo Diary is a modern, feature-rich journaling web application built with Laravel and DaisyUI. It provides users with a beautiful and intuitive platform to document their thoughts, experiences and memories in a secure and organized manner.
 
 ## ✨ Features
 
 - 📝 Rich text journal entries with formatting
-- 🌟 Favorite and commenting system
+- 🌟 Favorite, commenting and followers system
 - 📨 Mail and in-app notifications
 - 🔐 User authentication and authorization
 - 🛡️ Moderation and administration features
