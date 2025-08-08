@@ -10,8 +10,10 @@ Echo Diary is a modern, feature-rich journaling web application built with Larav
 ## ✨ Features
 
 - 📝 Rich text journal entries with formatting
-- 🔐 User authentication and authorization
+- 🌟 Favorite and commenting system
 - 📨 Mail and in-app notifications
+- 🔐 User authentication and authorization
+- 🛡️ Moderation and administration features
 - 🌍 Multi-language support (English, French, Dutch)
 - 📱 Responsive design for all devices
 - ⚡ Fast and efficient performance
