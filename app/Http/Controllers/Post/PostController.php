@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Post;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\PostFormRequest;
 use App\Models\Post;
 use App\Notifications\PostPublishedNotification;
@@ -50,8 +51,14 @@ class PostController extends Controller
     {
         Gate::authorize('view', $post);
 
+        $comments = $post->comments()
+            ->with('user')
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
         return view('post.show', [
             'post' => $post,
+            'comments' => $comments,
         ]);
     }
 

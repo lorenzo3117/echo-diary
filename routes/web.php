@@ -5,7 +5,8 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Post\CommentController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrixAttachmentController;
 use App\Http\Controllers\UserController;
@@ -38,6 +39,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Post
     Route::resource('post', PostController::class)->except('show');
     Route::post('/post/{post}/like', [PostController::class, 'favorite'])->name('post.like');
+
+    // Comment
+    Route::prefix('post')->name('comment.')->group(function () {
+        Route::post('/{post}/comment', [CommentController::class, 'store'])->name('store');
+        Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('update');
+        Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('destroy');
+    });
 
     // Trix attachment
     Route::post('/trix-attachment', [TrixAttachmentController::class, 'store']);

@@ -12,7 +12,7 @@
                 @include('post.partials.like-form', ['posts' => $post])
             </div>
 
-            <div class="hstack justify-between">
+            <div class="hstack justify-between my-4">
                 <h1>{{ $post->title }}</h1>
 
                 <div class="hstack">
@@ -24,8 +24,13 @@
 
         <div class="divider"></div>
 
-        <div>
+        <div class="my-4">
             {{ sanitizeHtml($post->content) }}
         </div>
+
+        @can('comment', $post)
+            <div class="divider"></div>
+            @include('post.partials.comments', ['post' => $post, 'comments' => $comments])
+        @endcan
     </div>
 @endsection

@@ -17704,6 +17704,16 @@ namespace Illuminate\Support\Facades {
             return $instance->tap($callback);
         }
 
+        /**
+         * @see \LaravelLang\Routes\ServiceProvider::registerGroup()
+         * @param \Closure $callback
+         * @static
+         */
+        public static function localizedGroup($callback)
+        {
+            return \Illuminate\Routing\Router::localizedGroup($callback);
+        }
+
             }
     /**
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes withoutOverlapping(int $expiresAt = 1440)
@@ -23453,6 +23463,24 @@ namespace Illuminate\Http {
         public static function hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
         {
             return \Illuminate\Http\Request::hasValidRelativeSignatureWhileIgnoring($ignoreQuery);
+        }
+
+            }
+    }
+
+namespace Illuminate\Routing {
+    /**
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */
+    class Router {
+        /**
+         * @see \LaravelLang\Routes\ServiceProvider::registerGroup()
+         * @param \Closure $callback
+         * @static
+         */
+        public static function localizedGroup($callback)
+        {
+            return \Illuminate\Routing\Router::localizedGroup($callback);
         }
 
             }

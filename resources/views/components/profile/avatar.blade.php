@@ -33,7 +33,10 @@
                         <span>{{ $avatar_placeholder }}</span>
                     </div>
                 </div>
-                @if($showUsername) <p @class(['text-2xl font-medium' => $variant === 'big'])>{{ $username }}</p> @endif
+                @if($showUsername) <p @class([
+                    'font-medium',
+                    'text-2xl' => $variant === 'big',
+                    ])>{{ $username }}</p> @endif
             </div>
         @if($navigateToProfile) </a> @endif
     </div>

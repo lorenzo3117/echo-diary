@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Gate;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
@@ -25,6 +26,10 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $first_published_at
  * @property mixed $content
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $favorites
+ * @property-read int|null $favorites_count
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
  * @method static Builder<static>|Post forUser(?\App\Models\User $user)
@@ -107,6 +112,14 @@ class Post extends Model
     public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'user_id');
+    }
+
+    /**
+     * Get the comments for the post.
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**
