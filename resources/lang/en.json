@@ -318,5 +318,11 @@
     "Post deleted successfully.": "Post deleted successfully.",
     "Post added to your favorites successfully.": "Post added to your favorites successfully.",
     "Post removed from your favorites successfully.": "Post removed from your favorites successfully.",
-    "Favorites": "Favorites"
+    "Favorites": "Favorites",
+    "Comments": "Comments",
+    "Comment added successfully.": "Comment created successfully.",
+    "Comment updated successfully.": "Comment updated successfully.",
+    "Comment deleted successfully.": "Comment deleted successfully.",
+    "Your message": "Your message",
+    "Be the first one to comment": "Be the first one to comment"
 }

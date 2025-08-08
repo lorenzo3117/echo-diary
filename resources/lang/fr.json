@@ -43,7 +43,7 @@
     "Close": "Fermer",
     "Collapse": "Réduire",
     "Collapse All": "Réduire tout",
-    "Comment": "Commentaire",
+    "Comment": "Commenter",
     "Confirm": "Confirmer",
     "Confirm Password": "Confirmer le mot de passe",
     "Confirm password": "Confirmer le mot de passe",
@@ -318,5 +318,11 @@
     "Post deleted successfully.": "Post supprimé avec succès.",
     "Post added to your favorites successfully.": "Post ajouté à vos favoris avec succès.",
     "Post removed from your favorites successfully.": "Post retiré de vos favoris avec succès.",
-    "Favorites": "Favoris"
+    "Favorites": "Favoris",
+    "Comments": "Commentaires",
+    "Comment added successfully.": "Commentaire ajouté avec succès.",
+    "Comment updated successfully.": "Commentaire mis à jour avec succès.",
+    "Comment deleted successfully.": "Commentaire supprimé avec succès.",
+    "Your message": "Votre message",
+    "Be the first one to comment": "Soyez le premier à commenter"
 }

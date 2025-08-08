@@ -13,7 +13,7 @@
         <x-form.input placeholder="{{ __('Your message') }}" name="message" value="{{ $comment?->message }}" fullWidth />
 
         <div class="hstack gap-2">
-            <x-form.submit-button>{{ $comment ? __('Update') : __('Save') }}</x-form.submit-button>
+            <x-form.submit-button>{{ __('Comment') }}</x-form.submit-button>
         </div>
     </form>
 @endif

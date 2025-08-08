@@ -43,7 +43,7 @@
     "Close": "Sluiten",
     "Collapse": "Inklappen",
     "Collapse All": "Alles inklappen",
-    "Comment": "Reactie",
+    "Comment": "Reageer",
     "Confirm": "Bevestigen",
     "Confirm Password": "Bevestig wachtwoord",
     "Confirm password": "Bevestig wachtwoord",
@@ -318,5 +318,11 @@
     "Post deleted successfully.": "Post verwijderd met succes.",
     "Post added to your favorites successfully.": "Post toegevoegd aan favorieten met succes.",
     "Post removed from your favorites successfully.": "Post verwijderd van favorieten met succes.",
-    "Favorites": "Favorieten"
+    "Favorites": "Favorieten",
+    "Comments": "Reacties",
+    "Comment added successfully.": "Reactie toegevoegd met succes.",
+    "Comment updated successfully.": "Reactie aangepast met succes.",
+    "Comment deleted successfully.": "Reactie verwijderd met succes.",
+    "Your message": "Jouw bericht",
+    "Be the first one to comment": "Wees de eerste om te reageren"
 }
