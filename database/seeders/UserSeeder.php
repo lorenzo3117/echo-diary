@@ -18,12 +18,14 @@ class UserSeeder extends Seeder
             ->moderator()
             ->create();
 
-        User::factory()
-            ->lorenzo()
-            ->create();
+        if (app()->environment('local')) {
+            User::factory()
+                ->lorenzo()
+                ->create();
 
-        User::factory(10)
-            ->has(Post::factory()->count(20))
-            ->create();
+            User::factory(10)
+                ->has(Post::factory()->count(20))
+                ->create();
+        }
     }
 }
