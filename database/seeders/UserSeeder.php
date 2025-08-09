@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             ->moderator()
             ->create();
 
-        if (app()->environment('local')) {
+        if (app()->isLocal()) {
             User::factory()
                 ->lorenzo()
                 ->create();
