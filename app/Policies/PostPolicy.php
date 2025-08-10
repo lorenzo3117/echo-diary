@@ -15,7 +15,6 @@ class PostPolicy
     {
         if (
             $user->isAdmin()
-            && $ability !== 'delete'
             && $ability !== 'favorite'
             && $ability !== 'comment'
         ) {
