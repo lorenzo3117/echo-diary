@@ -17,7 +17,7 @@
                 </x-indicator>
             </div>
         @endif
-        <ul tabindex="0" class="dropdown-content w-64">
+        <ul tabindex="0" class="dropdown-content w-128">
             @include('notifications.partials.menu-list-items', [
                 'notifications' => $unreadNotifications
             ])

@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 @if($showUsername) <p @class([
-                    'font-medium',
+                    'whitespace-nowrap font-medium',
                     'text-2xl' => $variant === 'big',
                     ])>{{ $username }}</p> @endif
             </div>

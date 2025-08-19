@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CommentPostedNotification;
 use App\Notifications\PostPublishedNotification;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\RedirectResponse;
@@ -44,6 +45,8 @@ class NotificationController extends Controller
         switch ($notification->type) {
             case PostPublishedNotification::class:
                 return redirect(route('post.show', $notification->data['post_id']));
+            case CommentPostedNotification::class:
+                return redirect()->to(url(route('post.show', $notification->data['post_id'])) . '#comments');
         }
 
         return redirect()->route('home');

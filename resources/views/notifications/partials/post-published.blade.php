@@ -13,8 +13,11 @@
 
 @if($notification && $postTitle && $user)
         <div class="vstack justify-start gap-2 py-1">
-            <x-profile.avatar :user="$user" :navigateToProfile="false"/>
-            <p class="line-clamp-2">{{ $postTitle }}</p>
+            <div class="hstack gap-2">
+                <p class="whitespace-nowrap">New post by</p>
+                <x-profile.avatar :user="$user" :navigateToProfile="false"/>
+            </div>
+            <strong class="truncate">{{ $postTitle }}</strong>
         </div>
 @else
     <p class="text-error">{{ __('Error loading notification') }}</p>

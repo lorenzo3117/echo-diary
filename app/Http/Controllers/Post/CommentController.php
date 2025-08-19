@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\CommentFormRequest;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\CommentPostedNotification;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,7 +24,8 @@ class CommentController extends Controller
         $data = $request->validated();
         $data['user_id'] = Auth::id();
 
-        $post->comments()->create($data);
+        $postedComment = $post->comments()->create($data);
+        $post->user->notify(new CommentPostedNotification($postedComment));
 
         return redirect()
             ->to(url()->previous() . '#comments')
@@ -49,6 +52,11 @@ class CommentController extends Controller
     public function destroy(Comment $comment): RedirectResponse
     {
         Gate::authorize('delete', $comment);
+
+        DatabaseNotification::query()
+            ->where('type', CommentPostedNotification::class)
+            ->whereJsonContains('data->comment_id', $comment->id)
+            ->delete();
 
         $comment->delete();
 

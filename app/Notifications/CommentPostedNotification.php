@@ -2,21 +2,21 @@
 
 namespace App\Notifications;
 
-use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class PostPublishedNotification extends Notification implements ShouldQueue
+class CommentPostedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Post $createdPost)
+    public function __construct(private readonly Comment $postedComment)
     {
         //
     }
@@ -36,16 +36,17 @@ class PostPublishedNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $postTitle = $this->createdPost->title;
-        $creatorUsername = $this->createdPost->user->username;
+        $postTitle = $this->postedComment->post->title;
+        $commentMessage = $this->postedComment->message;
+        $creatorUsername = $this->postedComment->user->username;
         $notifiableUsername = $notifiable->username;
 
         return (new MailMessage)
-            ->subject('New post by ' . $creatorUsername)
+            ->subject('New comment by ' . $creatorUsername)
             ->greeting('Hello ' . $notifiableUsername . ',')
-            ->line(new HtmlString('<strong>' . $creatorUsername . '</strong> published a new post:'))
-            ->line(new HtmlString('<strong>' . $postTitle . '</strong>'))
-            ->action('View post', url(route('post.show', $this->createdPost)));
+            ->line(new HtmlString('<strong>' . $creatorUsername . '</strong> posted a comment on your post ' . '<strong>' . $postTitle . '</strong>:'))
+            ->line(new HtmlString('<strong>' . $commentMessage . '</strong>'))
+            ->action('View comment', url(route('post.show', $this->postedComment->post))  . '#comments');
     }
 
     /**
@@ -56,16 +57,9 @@ class PostPublishedNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'post_id' => $this->createdPost->id,
-            'user_id' => $this->createdPost->user->id,
+            'comment_id' => $this->postedComment->id,
+            'post_id' => $this->postedComment->post->id,
+            'user_id' => $this->postedComment->user->id,
         ];
-    }
-
-    /**
-     * Determine if the notification should be sent.
-     */
-    public function shouldSend(object $notifiable, string $channel): bool
-    {
-        return $this->createdPost->isFirstTimePublishing();
     }
 }
