@@ -131,9 +131,6 @@ class Post extends Model
         $user = Auth::user();
 
         return $query
-            ->when($user != null, function ($query) use ($user) {
-                $query->where('user_id', '!=', $user->id);
-            })
             ->when(Gate::check('filter-followings', User::class) && $onlyShowFollowing, function ($query) use ($user) {
                 $user->followings()->pluck('users.id')->each(function ($id) use ($query) {
                     $query->where('user_id', $id);
